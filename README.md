@@ -1,21 +1,23 @@
-# comp20-spring2015-team14
+#comp20-spring2015-team14
 
 ##CookWithFriends- Project Proposal
 
 ##Project Title: CookWithFriends
 
-###Problem Statement: Collaborative cooking is difficult to plan.
-*How do you solve the problem?*: We will design a website that allows multiple people to input the
+**Problem Statement:** Collaborative cooking is difficult to plan.
+**How do you solve the problem?:** We will design a website that allows multiple people to input the
 ingredients they have in their houses. Then, the website will generate a list of potential recipe matches with the ingredients available. 
-List of all features that your team will implement. Your team will be accountable for the features you list. -Sylvie/Thomas
-Have multiple people input ingredients
-View full ingredient list with contributor info (e.g. “Frozen Veggies (Aditi)”)
-Utilize filters for recipes, e.g. “vegetarian,” “dairy-free,” “low calorie,” “short cook time,” “easy,” etc.
-“Cooking groups,” where users are all contributing to the same ingredient list
-A method of saying how many ingredients a group and what they still need in order to make the recipe
-User accounts/profiles
-Pick 5
-Bootstrap : We will use Bootstrap for our front-end framework design
+
+**List of all features that your team will implement**
+1. Have multiple people input ingredients
+2. View full ingredient list with contributor info (e.g. “Frozen Veggies (Aditi)”)
+3. Utilize filters for recipes, e.g. “vegetarian,” “dairy-free,” “low calorie,” “short cook time,” “easy,” etc.
+4. “Cooking groups,” where users are all contributing to the same ingredient list
+5. A method of saying how many ingredients a group and what they still need in order to make the recipe
+6. User accounts/profiles
+
+**Technologies**
+*Bootstrap : We will use Bootstrap for our front-end framework design
 Client-side data persistence: Store ingredient lists,
 Server-side data persistence:
  We will store data about user’s dietary restrictions and food preferences to more accurately come up with good suggestions.
