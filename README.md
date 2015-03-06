@@ -5,6 +5,7 @@
 ##Project Title: CookWithFriends
 
 **Problem Statement:** Collaborative cooking is difficult to plan.
+
 **How do you solve the problem?:** We will design a website that allows multiple people to input the
 ingredients they have in their houses. Based on this information, the website will generate a list of potential recipe matches based on the ingredients available, and the dietary restrictions and preferences of the group.
 
