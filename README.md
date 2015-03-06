@@ -9,15 +9,15 @@
 ingredients they have in their houses. Then, the website will generate a list of potential recipe matches with the ingredients available. 
 
 **List of all features that your team will implement**
-1. Have multiple people input ingredients
-2. View full ingredient list with contributor info (e.g. “Frozen Veggies (Aditi)”)
-3. Utilize filters for recipes, e.g. “vegetarian,” “dairy-free,” “low calorie,” “short cook time,” “easy,” etc.
-4. “Cooking groups,” where users are all contributing to the same ingredient list
-5. A method of saying how many ingredients a group and what they still need in order to make the recipe
-6. User accounts/profiles
+ 1. Have multiple people input ingredients
+ 2. View full ingredient list with contributor info (e.g. “Frozen Veggies (Aditi)”)
+ 3. Utilize filters for recipes, e.g. “vegetarian,” “dairy-free,” “low calorie,” “short cook time,” “easy,” etc.
+ 4. “Cooking groups,” where users are all contributing to the same ingredient list
+ 5. A method of saying how many ingredients a group and what they still need in order to make the recipe
+ 6. User accounts/profiles
 
 **Technologies**
-*Bootstrap : We will use Bootstrap for our front-end framework design
+*Bootstrap:* We will use Bootstrap for our front-end framework design
 Client-side data persistence: Store ingredient lists,
 Server-side data persistence:
  We will store data about user’s dietary restrictions and food preferences to more accurately come up with good suggestions.
