@@ -35,7 +35,9 @@ ingredients they have in their houses. Based on this information, the website wi
 
 ## Any algorithms or special techniques that will be necessary
  * We will use a search algorithm to find a list of recipes that fit the group’s criteria.
-
+ * We will use some kind of matching algorithm to find which recipes best fit the user's preferences
+ * We need an algorithm to process dietary restrictions
+ 
 ##APIs:
 * Facebook API: Integration of facebook login as a quick way of adding friends and connections
 * google search API: to search the web for potential recipe matches
