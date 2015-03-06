@@ -25,11 +25,13 @@ ingredients they have in their houses. Then, the website will generate a list of
  3. we will allow users to input their own recipes which we will store as part of our database.
  Send emails, SMSes, or push notifications: We will notify users about invitations to cook, or potential recipe  changes.
 *Data scraping:* The web-app will scrape cooking and recipe websites for potential recipes using the ingredients available.
-What data will your prototype be using and collecting- Aditi
-Collecting ingredient list- types of food
-Using recipes off of external websites to provide back to client
-representations of internal recipes entered by users, stored on-site
-Any algorithms or special techniques that will be necessary - Thomas/Sylvie
+
+##What data will your prototype be using and collecting
+ 1. Collecting ingredient list- types of food
+ 2. Using recipes off of external websites to provide back to client
+ 3. representations of internal recipes entered by users, stored on-site
+
+## Any algorithms or special techniques that will be necessary
 We will use a search algorithm to find a list of recipes that fit the group’s criteria.
 APIs:
 Facebook, as a way of finding friends and connections
