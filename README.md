@@ -44,17 +44,25 @@ ingredients they have in their houses. Based on this information, the website wi
 ## Mockups
 ![Group Collaboration Page](group_collaboration_page.png)
 
+Group Collaboration Cooking Page
+
 The group collaboration page consists of information about the cooking group: cooking group name, the names of the collaborators in the group, and the group member’s account pictures. The page also consists of the shared ingredients that belong to the group members. The ingredients list consists of the collaborator’s name, the ingredient, and the amount of that ingredient that he has. The collaborators also have the option to narrow down the kinds of recipe that they want to search for. The right side of the page is devoted to the list of filtered options such as gluten free recipes, vegetarian recipes, etc. Lastly, at the bottom of the page resides the “search for recipes” button that forwards the user to the recipe search page.
 
 ![Recipe Page](recipe_page.png)
+
+Recipe Page
 
 The recipe page is the page giving the user details about the recipe that he wants to make. The recipe page consists of the recipe name, picture, the quick recipe details, which are the same details listed on the recipe search page, the list of ingredients, the amount of each ingredient needed, and the recipe directions. 
 
 ![Recipe Search Page](recipe_search_page.png)
 
+Recipe Search Page
+
 The recipe search page is the page that will appear after a group has compiled a group of ingredients and they search for all the recipes that they can make. Each recipe will consist of the recipe name, picture, rating, time it takes, and difficulty level. The users can click on each recipe name and will get sent to the recipe page to find out more details about the recipe.
 
 ![User Profile Page](user_profile.png)
+
+User Profile Page
 
 The user profile page is the account page for every user. This page consists of a picture of user, which would also be the individual’s profile picture on Facebook if he decides to link the page to his Facebook. As well, the page includes the user’s name, relevant information about them (food allergies, etc), their friends/connections, past recipes he has made, and recipes that he has uploaded to the website.
 
