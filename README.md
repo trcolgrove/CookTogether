@@ -26,7 +26,8 @@ ingredients they have in their houses. Based on this information, the website wi
   
 * *Send emails, SMSes, or push notifications:* We will notify users about invitations to cook, or potential recipe       changes.
 * *Data scraping:* The web-app will scrape cooking and recipe websites for potential recipes using the ingredients available.
-
+* *Geolocation(Potential Feature):* Use geolocation to find users near you who have similar food preferences and are looking for people to cook with
+ 
 ##What data will your prototype be using and collecting
  1. Collecting ingredient list- types of food
  2. Using recipes off of external websites to provide back to client
@@ -36,10 +37,11 @@ ingredients they have in their houses. Based on this information, the website wi
  * We will use a search algorithm to find a list of recipes that fit the group’s criteria.
 
 ##APIs:
-* Facebook: as a way of finding friends and connections
+* Facebook API: Integration of facebook login as a quick way of adding friends and connections
 * google search API: to search the web for potential recipe matches
 
-Desired pages:
+## Mockups
+:
 User profile (allergies, friends, submitted recipes, past recipes used)
 Features: Ingredient list, Filters, needed ingredients for a recipe
 Recipe page
