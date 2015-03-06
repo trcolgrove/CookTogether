@@ -18,13 +18,13 @@ ingredients they have in their houses. Then, the website will generate a list of
 
 **Technologies**
 *Bootstrap:* We will use Bootstrap for our front-end framework design
-Client-side data persistence: Store ingredient lists,
-Server-side data persistence:
- We will store data about user’s dietary restrictions and food preferences to more accurately come up with good suggestions.
- We will store information about a users friends, and connections. In a way, a social network for cooking enthusiasts.
- we will allow users to input their own recipes which we will store as part of our database.
-Send emails, SMSes, or push notifications: We will notify users about invitations to cook, or potential recipe changes.
-Data scraping : The web-app will scrape cooking and recipe websites for potential recipes using the ingredients available.
+*Client-side data persistence:* Store ingredient lists,
+*Server-side data persistence:*
+ 1. We will store data about user’s dietary restrictions and food preferences to more accurately come up with good    suggestions.
+ 2. We will store information about a users friends, and connections. In a way, a social network for cooking      enthusiasts.
+ 3. we will allow users to input their own recipes which we will store as part of our database.
+ Send emails, SMSes, or push notifications: We will notify users about invitations to cook, or potential recipe  changes.
+*Data scraping:* The web-app will scrape cooking and recipe websites for potential recipes using the ingredients available.
 What data will your prototype be using and collecting- Aditi
 Collecting ingredient list- types of food
 Using recipes off of external websites to provide back to client
