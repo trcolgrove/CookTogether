@@ -41,10 +41,10 @@ ingredients they have in their houses. Based on this information, the website wi
 * google search API: to search the web for potential recipe matches
 
 ## Mockups
-![Alt text](group_collaboration_page.png)
-![Alt text](recipe_page.png)
-![Alt text](recipe_search_page.png)
-![Alt text](user_profile.png)
+![Group Collaboration Page](group_collaboration_page.png)
+![Recipe Page](recipe_page.png)
+![Recipe Search Page](recipe_search_page.png)
+![User Profile Page](user_profile.png)
 
 User profile (allergies, friends, submitted recipes, past recipes used)
 Features: Ingredient list, Filters, needed ingredients for a recipe
