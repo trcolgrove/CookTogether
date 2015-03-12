@@ -66,4 +66,8 @@ User Profile Page
 
 The user profile page is the account page for every user. This page consists of a picture of user, which would also be the individual’s profile picture on Facebook if he decides to link the page to his Facebook. As well, the page includes the user’s name, relevant information about them (food allergies, etc), their friends/connections, past recipes he has made, and recipes that he has uploaded to the website.
 
-
+#Comments by Ming
+1. So far, this is by far the best project proposal I've seen. Very well done!
+2. Good idea to use of Facebook for login
+3. The question now is execution: how much of this will your team be able to pull off......
+4. Overall score: 15/15
