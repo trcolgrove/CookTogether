@@ -72,9 +72,7 @@ def main(args):
 
 
 def index():
-    console.log("yes");
-    return jsonify(result={"status": 200})
-    ##render_template('index.html')
+    return render_template('index.html')
 
 
 @app.route("/foodlist", methods = ['GET','POST'])
