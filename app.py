@@ -54,12 +54,12 @@ def main(args):
     # more weeks at number 1.
 
     #cursor = songs.find({'weeksAtOne': {'$gte': 10}}).sort('decade', 1)
-    
+
     ### Since this is an example, we'll clean up after ourselves.
 
     ### Only close the connection when your app is terminating
 
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
 
 
     client.close()
