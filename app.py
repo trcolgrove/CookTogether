@@ -16,6 +16,7 @@ import sys
 import pymongo
 
 from bson import Binary, Code
+from bson import json_util
 from bson.json_util import dumps
 
 ### Create seed data
@@ -31,25 +32,25 @@ SEED_DATA = [
         'meal_id': '0',
         'username': 'Thomas Colgrove',
         'ingredient': 'blue zone',
-        'ammount': 10,
+        'amount': 10,
     },
     {
         'meal_id': '0',
         'username': 'Sylvie Abookire',
         'ingredient': 'chicken',
-        'ammount': 3,
+        'amount': 3,
     },
     {
         'meal_id': '0',
         'username': 'Aditi Ashok',
         'ingredient': 'broccoli',
-        'ammount': 14,
+        'amount': 14,
     },
     {
         'meal_id': '0',
         'username': 'Zoe Monosson',
         'ingredient': 'kit-kats',
-        'ammount': 85,
+        'amount': 85,
     }
 
 ]
@@ -87,7 +88,6 @@ def main(args):
     ### Since this is an example, we'll clean up after ourselves.
 
     ### Only close the connection when your app is terminating
-    #db.drop_collection('songs')
 
     app.run(debug=True)
 
@@ -105,13 +105,15 @@ def index():
     return render_template('index.html')
 
 
-@app.route("/foodlist/id=<arg>", methods = ['GET'])
+@app.route("/foodlist", methods = ['GET','POST'])
 
 def return_foodlist():
-    meal_id = request.args.get('meal_id')
-    foods = ['foods']
-    foodslist = foods.find({meal_id})
-    return jsonify(foodslist)
+    if request.method = 'GET':
+        meal_id = request.args.get('meal_id')
+        foods = db['foods']
+        cursor = (foods.find({'meal_id': meal_id}))
+        return dumps(cursor)
+    elif request.method = 'POST'
 
 @app.route("/<arg>")
 

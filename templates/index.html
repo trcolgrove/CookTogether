@@ -3,12 +3,28 @@
 <html>
 
 <head>
-	<title>Captain's Log</title>
+	<title>Food Log</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script>
 	    $(document).ready(function(){
-			var keys = [];
-			var i = 0;
+
+			var username = '';
+			var ingredient = '';
+			var amount = '';
+
+			$.getJSON('/foodlist?meal_id=0', function( data ) {
+			 		var init_meal = data;
+					for(var i = 0; i < init_meal.length; i++){
+		        username = init_meal[i].username;
+		        ingredient = init_meal[i].ingredient;
+						amount = init_meal[i].amount;
+		        var meal_string = "<p>user: " + username + " ingredient: " + ingredient + " x" + amount + "</p>";
+						$('#log').prepend(meal_string);
+		      }
+			});
+
+
+			/*
 			for (key in localStorage) {
 				keys.push(key);
 				console.log(keys[i]);
@@ -19,19 +35,31 @@
 				var key = keys[k];
 				$('#log').prepend(localStorage[key]);
 			}
+*/
+		//	$('#log').prepend(localStorage.getItem('reloadtxt'));
 
-			$('#log').prepend(localStorage.getItem('reloadtxt'));
-			$('#msg').bind('keyup', function(e) {
-				var code = e.keyCode || e.which;
-				if(code == 13) { //Enter keycode
+			$('.inputbox').change( function() {
 					var date = Date();
-					var logmsg = ('<p>' + date + ' - ' + $('#msg').val() + '</p>');
-					$('#log').prepend(logmsg);
-					$('#msg').val("");
-					localStorage[new Date().getTime()] = logmsg;
+					var id = this.id;
+					if(id == 'username'){
+							username = $('#username').val();
+					}
+					else if(id == 'ingredient'){
+							ingredient = $('#ingredient').val();
+					}
+					else if(id == 'amount'){
+							amount = $('#amount').val();
+					}
+					else{
+						throw 'invalid element id';
 					}
 			});
-    })
+			$('input[type=submit]').click(function(){
+				var meal_string = "<p>user: " + username + "ingredient: " + ingredient + " x" + amount + "</p>"
+				$('#log').prepend(meal_string);
+				$.post('/foodlist?meal_id=0', {username, ingredient, amount})
+			});
+		});
 
 
 	</script>
@@ -39,10 +67,9 @@
 
 <body>
 	<h1>Fooooood Log</h1>
-	<h3>meal id: <input type="text" id="msg" name="msg" size="30" /></h3>
-	<h3>username: <input type="text" id="msg" name="msg" size="30" /></h3>
-	<h3>ingredient: <input type="text" id="msg" name="msg" size="30" /></h3>
-	<h3>amount: <input type="text" id="msg" name="msg" size="30" /></h3>
+	<h3>username: <input type="text" id="username" name="username" class="inputbox" size="30" /></h3>
+	<h3>ingredient: <input type="text" id="ingredient" name="ingredient" class="inputbox" size="30" /></h3>
+	<h3>amount: <input type="text" id="amount" name="amount" class="inputbox" size="30" /></h3>
 	<input type="submit" value="submit!">
 	<div id="log"></div>
 </body>
