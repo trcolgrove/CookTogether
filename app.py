@@ -73,7 +73,7 @@ def main(args):
 
 def index():
     console.log("yes");
-    return "wut"
+    return jsonify(result={"status": 200})
     ##render_template('index.html')
 
 
