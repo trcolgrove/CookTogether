@@ -59,7 +59,7 @@ def main(args):
 
     ### Only close the connection when your app is terminating
 
-    app.run(host='0.0.0.0')
+    app.run()
 
 
     client.close()
