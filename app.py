@@ -73,7 +73,8 @@ def main(args):
 
 def index():
     console.log("yes");
-    return render_template('index.html')
+    return "wut" 
+    ##render_template('index.html')
 
 
 @app.route("/foodlist", methods = ['GET','POST'])
