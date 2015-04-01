@@ -27,34 +27,6 @@ MONGODB_URI = 'mongodb://heroku_app35358178:cld5pedb57lkvl6fj1af5ogvb3@ds035027.
 client = pymongo.MongoClient(MONGODB_URI)
 db = client.get_default_database()
 
-SEED_DATA = [
-    {
-        'meal_id': '0',
-        'username': 'Thomas Colgrove',
-        'ingredient': 'blue zone',
-        'amount': 10,
-    },
-    {
-        'meal_id': '0',
-        'username': 'Sylvie Abookire',
-        'ingredient': 'chicken',
-        'amount': 3,
-    },
-    {
-        'meal_id': '0',
-        'username': 'Aditi Ashok',
-        'ingredient': 'broccoli',
-        'amount': 14,
-    },
-    {
-        'meal_id': '0',
-        'username': 'Zoe Monosson',
-        'ingredient': 'kit-kats',
-        'amount': 85,
-    }
-
-]
-
 ### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
 
@@ -71,8 +43,6 @@ def main(args):
 
     # Note that the insert method can take either an array or a single dict.
 
-    foods.insert(SEED_DATA)
-
     # Then we need to give Boyz II Men credit for their contribution to
     # the hit "One Sweet Day".
 
@@ -84,7 +54,7 @@ def main(args):
     # more weeks at number 1.
 
     #cursor = songs.find({'weeksAtOne': {'$gte': 10}}).sort('decade', 1)
-
+    
     ### Since this is an example, we'll clean up after ourselves.
 
     ### Only close the connection when your app is terminating
@@ -108,12 +78,14 @@ def index():
 @app.route("/foodlist", methods = ['GET','POST'])
 
 def return_foodlist():
-    if request.method = 'GET':
-        meal_id = request.args.get('meal_id')
-        foods = db['foods']
+    foods = db['foods']
+    meal_id = request.args.get('meal_id')
+    if request.method == 'GET':
         cursor = (foods.find({'meal_id': meal_id}))
         return dumps(cursor)
-    elif request.method = 'POST'
+    elif request.method == 'POST':
+        foods.insert({'meal_id' : meal_id, 'username' : request.form['username'], 'ingredient': request.form['ingredient'], 'amount': request.form['amount']} )
+        return "success"
 
 @app.route("/<arg>")
 

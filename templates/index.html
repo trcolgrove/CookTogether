@@ -55,9 +55,9 @@
 					}
 			});
 			$('input[type=submit]').click(function(){
-				var meal_string = "<p>user: " + username + "ingredient: " + ingredient + " x" + amount + "</p>"
+				var meal_string = "<p>user: " + username + " ingredient: " + ingredient + " x" + amount + "</p>"
 				$('#log').prepend(meal_string);
-				$.post('/foodlist?meal_id=0', {username, ingredient, amount})
+				$.post('/foodlist?meal_id=0', {'username':username, 'ingredient':ingredient, 'amount':amount});
 			});
 		});
 
