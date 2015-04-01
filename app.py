@@ -59,7 +59,7 @@ def main(args):
 
     ### Only close the connection when your app is terminating
 
-    app.run()
+    app.run(debug=True)
 
 
     client.close()
@@ -72,6 +72,7 @@ def main(args):
 
 
 def index():
+    console.log("yes");
     return render_template('index.html')
 
 
