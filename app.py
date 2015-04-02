@@ -58,7 +58,7 @@ def main(args):
     ### Since this is an example, we'll clean up after ourselves.
 
     ### Only close the connection when your app is terminating
-
+    
     app.run(debug=True, port=33507)
 
 
@@ -86,6 +86,15 @@ def return_foodlist():
     elif request.method == 'POST':
         foods.insert({'meal_id' : meal_id, 'username' : request.form['username'], 'ingredient': request.form['ingredient'], 'amount': request.form['amount']} )
         return "success"
+
+
+@app.route("/plan", methods=['GET'])
+
+def return_planner():
+    return render_template('cooktogether_page1.html')
+
+
+
 
 @app.route("/<arg>")
 
