@@ -25,7 +25,7 @@ $(document).ready(function(){
       }
       else if(id == 'ingr_input'){
           ingredient = $('#ingr_input').val();
-          ingredients.append(ingregient);
+          ingredients.append += ingredient;
       }
       else if(id == 'amount_input'){
           amount = $('#amount_input').val();
