@@ -1,5 +1,7 @@
 Status Report 1
+
 Zoe Monosson, Sylvie Abookire, Aditi Ashok, Thomas Colgrove
+
 4/8/15
 
 1) This week, on the front end, we created more detailed mockups for the current meal planner screen and continued to explore bootstrap.
