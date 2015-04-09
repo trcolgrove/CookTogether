@@ -94,7 +94,10 @@ def return_planner():
     return render_template('cooktogether_page1.html')
 
 
+@app.route("/fb", methods =['GET'])
 
+def facebook():
+    return render_template('fbapi.html')
 
 @app.route("/<arg>")
 
