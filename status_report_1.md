@@ -11,6 +11,8 @@ Zoe Monosson, Sylvie Abookire, Aditi Ashok, Thomas Colgrove
 3) Goals for this coming week:
 
 Finish Mockups
+
 Learn how to use facebook API and recipe API 
+
 Continue learning Bootstrap and start translating the mockups to code
 
