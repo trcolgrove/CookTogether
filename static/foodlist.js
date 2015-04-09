@@ -2,6 +2,7 @@ var username = '';
 var ingredient = '';
 var amount = '';
 
+var ingredients = [];
 $(document).ready(function(){
 
   $.getJSON('/foodlist?meal_id=0', function( data ) {
@@ -10,11 +11,11 @@ $(document).ready(function(){
         username = init_meal[i].username;
         ingredient = init_meal[i].ingredient;
         amount = init_meal[i].amount;
+        ingredients.append(ingregient);
         listIngredient();
 
       }
   });
-
 
   $('.inputbox').change( function() {
       var date = Date();
@@ -24,6 +25,7 @@ $(document).ready(function(){
       }
       else if(id == 'ingr_input'){
           ingredient = $('#ingr_input').val();
+          ingredients.append(ingregient);
       }
       else if(id == 'amount_input'){
           amount = $('#amount_input').val();
@@ -36,6 +38,9 @@ $(document).ready(function(){
     listIngredient();
     $.post('/foodlist?meal_id=0', {'username':username, 'ingredient':ingredient, 'amount':amount});
     clearInputs();
+  });
+  $('#generate').change(function() {
+      getRecipes();
   });
 });
 
@@ -50,25 +55,31 @@ function listIngredient(){
   $('#ingredientlist').prepend('<li class="list-group-item">' +  ingredient + '</li>');
   $('#amountlist').prepend('<li class="list-group-item">' +  amount + '</li>');
 }
-/*
-$('.inputbox').change( function() {
-    var date = Date();
-    var id = this.id;
-    if(id == 'username'){
-        username = $('#username').val();
+
+function getRecipes(){
+    var url = 'https://api.edamam.com/search?q='
+    for(var i = 0; i < ingredients.length; i++){
+      url += "," + ingredients[i];
     }
-    else if(id == 'ingredient'){
-        ingredient = $('#ingredient').val();
-    }
-    else if(id == 'amount'){
-        amount = $('#amount').val();
-    }
-    else{
-      throw 'invalid element id';
-    }
-});
-$('input[type=submit]').click(function(){
-  var meal_string = "<p>user: " + username + " ingredient: " + ingredient + " x" + amount + "</p>"
-  $('#log').prepend(meal_string);
-  $.post('/foodlist?meal_id=0', {'username':username, 'ingredient':ingredient, 'amount':amount});
-});*/
+    url += '&app_id=a9e44233&app_key=4e60143490cec408c5aaf35215ab8ef6'
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      crossDomain: true,
+      dataType: "jsonp",
+      success: function(response){
+        var results = response['hits'];
+        console.log(results);
+        for( var i = 0; i < results.length; i++){
+          var ingr = results[i].recipe.ingredients;
+          for( var j = 0;  j < ingr.length; j++ ){
+            $("#recipes").prepend("<p>" + ingr[j].food.label + "</p>");
+          }
+        }
+      },
+      error: function (xhr, status) {
+                  alert("error querying edamam database");
+      }
+  });
+}

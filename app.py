@@ -58,7 +58,7 @@ def main(args):
     ### Since this is an example, we'll clean up after ourselves.
 
     ### Only close the connection when your app is terminating
-
+    db.collection.drop('foods');
     app.run(debug=True, port=33507)
 
 
