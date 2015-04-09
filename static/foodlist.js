@@ -11,7 +11,7 @@ $(document).ready(function(){
         username = init_meal[i].username;
         ingredient = init_meal[i].ingredient;
         amount = init_meal[i].amount;
-        ingredients.append(ingregient);
+        ingredients.append(ingredient);
         listIngredient();
 
       }
