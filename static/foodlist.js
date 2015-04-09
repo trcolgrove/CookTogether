@@ -4,7 +4,7 @@ var amount = '';
 
 var ingredients = [];
 $(document).ready(function(){
-
+  /*
   $.getJSON('/foodlist?meal_id=0', function( data ) {
       var init_meal = data;
       for(var i = 0; i < init_meal.length; i++){
@@ -16,7 +16,7 @@ $(document).ready(function(){
 
       }
   });
-
+  */
   $('.inputbox').change( function() {
       var date = Date();
       var id = this.id;
