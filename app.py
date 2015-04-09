@@ -58,6 +58,7 @@ def main(args):
     ### Since this is an example, we'll clean up after ourselves.
 
     ### Only close the connection when your app is terminating
+
     app.run(debug=True, port=33507)
 
 
@@ -87,13 +88,14 @@ def return_foodlist():
         return "success"
 
 
+
 @app.route("/plan", methods=['GET'])
 
 def return_planner():
     return render_template('cooktogether_page1.html')
 
 
-@app.route("/fb", methods =['GET'])
+@app.route("/fblogin", methods =['GET'])
 
 def facebook():
     return render_template('fbapi.html')

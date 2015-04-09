@@ -25,7 +25,6 @@ $(document).ready(function(){
       }
       else if(id == 'ingr_input'){
           ingredient = $('#ingr_input').val();
-          ingredients.append += ingredient;
       }
       else if(id == 'amount_input'){
           amount = $('#amount_input').val();
@@ -35,11 +34,12 @@ $(document).ready(function(){
       }
   });
   $('input[type=submit]').click(function(){
+    ingredients.push(ingredient);
     listIngredient();
-    $.post('/foodlist?meal_id=0', {'username':username, 'ingredient':ingredient, 'amount':amount});
+    //$.post('/foodlist?meal_id=0', {'username':username, 'ingredient':ingredient, 'amount':amount});
     clearInputs();
   });
-  $('#generate').change(function() {
+  $('#generate').click(function() {
       getRecipes();
   });
 });
@@ -62,7 +62,8 @@ function getRecipes(){
       url += "," + ingredients[i];
     }
     url += '&app_id=a9e44233&app_key=4e60143490cec408c5aaf35215ab8ef6'
-
+    console.log(url);
+    $("#recipes").empty();
     $.ajax({
       url: url,
       type: 'GET',
@@ -70,12 +71,16 @@ function getRecipes(){
       dataType: "jsonp",
       success: function(response){
         var results = response['hits'];
-        console.log(results);
+        //console.log(results);
         for( var i = 0; i < results.length; i++){
-          var ingr = results[i].recipe.ingredients;
+          var recipe = results[i].recipe;
+          var ingr = recipe.ingredients;
+          $("#recipes").append("<h3>" + recipe.label + "</h3>");
+          var newentry = "<p> ingredients : "
           for( var j = 0;  j < ingr.length; j++ ){
-            $("#recipes").prepend("<p>" + ingr[j].food.label + "</p>");
+            newentry += ingr[j].food.label + ", "
           }
+          $("#recipes").append(newentry + "</p>");
         }
       },
       error: function (xhr, status) {
