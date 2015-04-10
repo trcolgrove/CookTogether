@@ -7,10 +7,10 @@ Zoe Monosson, Sylvie Abookire, Aditi Ashok, Thomas Colgrove
 ##Current Progress:
 
 *Front End:*
-Created more detailed mockups for the current meal planner screen.
-Continued exploring Bootstrap.
-	Currently, Bootstrap front-end templates for the main screen and the log in screen are in progress.
-Worked on integrating outside Frameworks with the Bootstrap libraries such as Font Awesome and Social Buttons.
+- Created more detailed mockups for the current meal planner screen.
+- Continued exploring Bootstrap.
+- Currently, Bootstrap front-end templates for the main screen and the log in screen are in progress.
+- Worked on integrating outside Frameworks with the Bootstrap libraries such as Font Awesome and Social Buttons.
 
 *Back End:*
 - Implemented Server Side Data Persistence and allowed inputted ingredients to be stored between multiple users. Entries are stored in a database, and have a "meal_id" representing the specific collaboration plan, username, ingredient, and ammount. 
