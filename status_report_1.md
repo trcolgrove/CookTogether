@@ -32,6 +32,7 @@ If not, I propose using google searches to determine which combinations of ingre
 - Finish Front-End Mockups
 - Begin translating Bootstrap code to more closely resemble how the Mockups look.
 - Learn how to use Facebook API and integrate it in order to allow users to log in.
+- Use user login to allow specific users to collaborate within the context of a specific planner, (stored in database as a specific meal-id)
 - Improve algorithm for generating a query string to the edamam recepie API
 
 
