@@ -13,8 +13,9 @@ Continued exploring Bootstrap.
 Worked on integrating outside Frameworks with the Bootstrap libraries such as Font Awesome and Social Buttons.
 
 *Back End:*
-1. Implemented Server Side Data Persistence and allowed inputted ingredients to be stored between multiple users. Entries are stored in a database, and have a "meal_id" representing the specific collaboration plan, username, ingredient, and ammount. 
-2. Successful to queries to the Edemam food api and recipie generation using user inputed ingredients. Try it out at http://cooktogether.herokuapp.com/plan (submit some entries and hit generate, if you scroll down it should have a list of recepies and required ingredients)
+- Implemented Server Side Data Persistence and allowed inputted ingredients to be stored between multiple users. Entries are stored in a database, and have a "meal_id" representing the specific collaboration plan, username, ingredient, and ammount. 
+-  Successful to queries to the Edemam food api and recipie generation using user inputed ingredients. Try it out at http://cooktogether.herokuapp.com/plan (submit some entries and hit generate, if you scroll down it should have a list of recepies and required ingredients)
+
 
 Note: Currently, we have disabled (commented out)retrieval from the database on our main page for API testing purposes, but it is fully functional and can be enabled by uncommenting the get statement in our foodlist.js file
 
