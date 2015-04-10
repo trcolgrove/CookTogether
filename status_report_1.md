@@ -28,10 +28,10 @@ A significant challenge regarding the backend of this project will be implementi
 If not, I propose using google searches to determine which combinations of ingredients are likely to generate more hits on a call to the api. Furthermore, my first thought is to do a dynamic programming approach to generating search queries to google (ie find the best combination of 2 ingredients, then the best combination of those ingredients and one more ingredient etc.) In truth, We need to do more research to find the best approach to this problem.
 
 ##Goals For Next Week
-Finish Mockups
-Begin translating Bootstrap code to more closely resemble how the Mockups look.
-Learn how to use Facebook API and integrate it in order to allow users to log in.
-Improve algorithm for generating a query string to the edamam recepie API
+- Finish Front-End Mockups
+- Begin translating Bootstrap code to more closely resemble how the Mockups look.
+- Learn how to use Facebook API and integrate it in order to allow users to log in.
+- Improve algorithm for generating a query string to the edamam recepie API
 
 
 
