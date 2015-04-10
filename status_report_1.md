@@ -17,7 +17,7 @@ Worked on integrating outside Frameworks with the Bootstrap libraries such as Fo
 -  Successful queries to the Edemam food api and accurate recipie generation using user inputed ingredients. Try it out at http://cooktogether.herokuapp.com/plan (submit some entries and hit generate, if you scroll down it should have a list of recepies and required ingredients)
 
 
-Note: Currently, we have disabled (commented out)retrieval from the database on our main page for API testing purposes, but it is fully functional and can be enabled by uncommenting the get statement in our foodlist.js file
+Note: Currently, we have disabled (commented out) retrieval from the database on our main page for API testing purposes, but it is fully functional and can be enabled by uncommenting the get statement in our foodlist.js file
 
 #Challenges:
 *Front-End*
