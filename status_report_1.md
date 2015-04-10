@@ -28,8 +28,11 @@ Trying to figure out how to translate Mock Up color schemes into Bootstrap.
 
 3) Goals for this coming week:
 Finish Mockups
+
 Begin translating Bootstrap code to more closely resemble how the Mockups look.
+
 Learn how to use Facebook API and integrate it in order to allow users to log in.
+
 Improve algorithm for generating a query string to the edamam recepie API
 
 
