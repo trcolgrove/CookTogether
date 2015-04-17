@@ -28,12 +28,14 @@ Also trying to create the concept of User Profiles with specific
 settings has proved a bit challenging.
 
 
-Goals For Next Week
+Goals For Next Week:
+Front End:
 Finish Front End development on most pages, at least a good "draft" of how
 each page will look. Start researching how to turn sketch objects into CSS 
 files. We discovered this week that the program we are using for designing 
 the interface, Sketch, has a easy way to translate objects made from the 
 program into CSS format.
 
+Back End:
 Integrate Facebook API and allow users to be able to Log In and create
 a profile.
