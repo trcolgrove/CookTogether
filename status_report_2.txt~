@@ -19,7 +19,7 @@ Working on implementing Facebook API in order to allow users to log in.
 Challenges:
 Front-End:
 Having a little bit of difficulty with positioning and coloring via
-HTML/CSS integration with Bootstrap. 
+HTML/CSS integration with Bootstrap.
 
 
 Back-End:
@@ -30,7 +30,6 @@ settings has proved a bit challenging.
 
 Goals For Next Week
 Finish Front End development on most pages, at least a good "draft" of how
-each page will look. Start researching how to turn sketch objects into CSS files. We discovered this week that the program we are using for designing the interface, Sketch, has a easy way to translate objects made from the program into CSS format.
-
+each page will look.
 Integrate Facebook API and allow users to be able to Log In and create
 a profile.
