@@ -1,0 +1,35 @@
+Status Report 2
+
+Zoe Monosson, Sylvie Abookire, Aditi Ashok, Thomas Colgrove
+
+4/17/15
+
+Current Progress:
+
+Front End:
+Finished all the mockups for the front end, we now have a good idea of how
+the finished product will look. 
+Did more work in Bootstrap to try and make the mockups reality.
+Working on implementing colors and coming up with a uniform color scheme.
+
+Back End:
+Working on implementing Facebook API in order to allow users to log in.
+
+
+Challenges:
+Front-End:
+Having a little bit of difficulty with positioning and coloring via
+HTML/CSS integration with Bootstrap.
+
+
+Back-End:
+Figuring out how the Facebook API works is a bit challenging. 
+Also trying to create the concept of User Profiles with specific
+settings has proved a bit challenging.
+
+
+Goals For Next Week
+Finish Front End development on most pages, at least a good "draft" of how
+each page will look.
+Integrate Facebook API and allow users to be able to Log In and create
+a profile.
