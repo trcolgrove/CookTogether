@@ -37,6 +37,6 @@ If not, I propose using google searches to determine which combinations of ingre
 - Use user login to allow specific users to collaborate within the context of a specific planner, (stored in database as a specific meal-id)
 - Improve algorithm for generating a query string to the edamam recepie API
 
-
-
-
+#Comments by Ming
+* If you are having difficulty using Bootstrap, ask yourselves: do you need it?
+* it would be incredibly wasteful of API calls --okay, good analysis.  But you can get away with that for a prototype.
