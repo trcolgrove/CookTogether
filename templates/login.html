@@ -51,12 +51,12 @@
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+        'in with Facebook.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+        'in with Facebook.';
     }
   }
 
@@ -123,11 +123,6 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-</div>
 
 <div class="container">
     <div class="jumbotron">
@@ -136,9 +131,8 @@
     </div>
 
 
-
-<!--<
-div class="col-md-12 text-center"> 
+<!--
+<div class="col-md-12 text-center"> 
   <a class="btn btn-lg btn-social btn-facebook">
     <i class="fa fa-facebook"></i> Sign in with Facebook
 </a>
@@ -151,8 +145,11 @@ div class="col-md-12 text-center">
 
 
     </div>
-
-
+<div class="col-md-12 text-center"> 
+    <div id="status"></div>
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="xlarge">
+</fb:login-button>
+</div>
     <hr>
 
 </div>
