@@ -2,10 +2,14 @@
         padding-top: 70px;
         background-color: #33CC99;
     }
-    h1 {
-
+    h1, h2 {
         text-align: center;
     }
+
+    .checkbox-inline {
+        font-size: 18px;
+    }
+
      .row {
         text-align:center;
 
