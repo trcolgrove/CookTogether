@@ -7,36 +7,15 @@ Zoe Monosson, Sylvie Abookire, Aditi Ashok, Thomas Colgrove
 ##Current Progress:
 
 *Front End:*
-- Created more detailed mockups for the current meal planner screen.
-- Continued exploring Bootstrap.
-- Currently, Bootstrap front-end templates for the main screen and the log in screen are in progress.
-- Worked on integrating outside Frameworks with the Bootstrap libraries such as Font Awesome and Social Buttons.
+- Completed implementations of UI Final Designs
+- Several completed bootstrap implementations of UI Designs, implementing page interactivity
+- Front end facebook login buttons and visuals
 
 *Back End:*
-- Implemented Server Side Data Persistence and allowed inputted ingredients to be stored between multiple users. Entries are stored in a database, and have a "meal_id" representing the specific collaboration plan, username, ingredient, and ammount. 
--  Successful queries to the Edemam food api and accurate recipie generation using user inputed ingredients. Try it out at http://cooktogether.herokuapp.com/plan (submit some entries and hit generate, if you scroll down it should have a list of recepies and required ingredients)
+- Implemented a conception of users in the database including dietary restrictions, unique identifiers, and       associated group
+- implemented facebook login/logout and retrieval of user information 
+- working on hooking up back end elements to front end for a useable experience
 
+##Goals:
+- Almost all of the components of our site are in place in some form or another. Now comes the tricky part: putting everything together
 
-Note: Currently, we have disabled (commented out) retrieval from the database on our main page for API testing purposes, but it is fully functional and can be enabled by uncommenting the get statement in our foodlist.js file
-
-#Challenges:
-*Front-End:*
-
-Had a little bit of difficulty integrating Bootstrap frameworks such as Font Awesome and Social Buttons initially
-Trying to figure out how to translate Mock Up color schemes into Bootstrap.
-
-*Back-End:*
-
-A significant challenge regarding the backend of this project will be implementing an algorithm that isn't wasteful of api calls. Currently we query the api based on all of the ingredients user's input. The problem with this is that if there is one ingredient that doesn't match results, the query turns up empty. However if we queried the API many times based on all different combinations, not only would this be a factorial (combinatorics) runtime for large inputs, it would be incredibly wasteful of API calls. I plan to do some research on whether the edemam api can handle this behavior, or if any other api's implement something to this effect. 
-If not, I propose using google searches to determine which combinations of ingredients are likely to generate more hits on a call to the api. Furthermore, my first thought is to do a dynamic programming approach to generating search queries to google (ie find the best combination of 2 ingredients, then the best combination of those ingredients and one more ingredient etc.) In truth, We need to do more research to find the best approach to this problem.
-
-##Goals For Next Week
-- Finish Front-End Mockups
-- Begin translating Bootstrap code to more closely resemble how the Mockups look.
-- Learn how to use Facebook API and integrate it in order to allow users to log in.
-- Use user login to allow specific users to collaborate within the context of a specific planner, (stored in database as a specific meal-id)
-- Improve algorithm for generating a query string to the edamam recepie API
-
-#Comments by Ming
-* If you are having difficulty using Bootstrap, ask yourselves: do you need it?
-* it would be incredibly wasteful of API calls --okay, good analysis.  But you can get away with that for a prototype.
