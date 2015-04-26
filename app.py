@@ -79,20 +79,39 @@ def index():
 
 def return_foodlist():
     foods = db['foods']
-    meal_id = request.args.get('meal_id')
+    meal_id = request.args.get('group_id')
     if request.method == 'GET':
-        cursor = (foods.find({'meal_id': meal_id}))
+        cursor = (foods.find({'group_id': meal_id}))
         return dumps(cursor)
     elif request.method == 'POST':
-        foods.insert({'meal_id' : meal_id, 'username' : request.form['username'], 'ingredient': request.form['ingredient'], 'amount': request.form['amount']} )
+        foods.insert({'group_id' : group_id, 'username' : request.form['username'], 'ingredient': request.form['ingredient'], 'amount': request.form['amount']} )
         return "success"
-
 
 
 @app.route("/plan", methods=['GET'])
 
 def return_planner():
     return render_template('cooktogether_page1.html')
+
+
+@app.route("dietrestrict", methods=['POST'])
+
+def edit_diet():
+    user = request.args.get('user_id')
+    diet = request.args.get('diet')
+    
+    users = db['users']
+    users.find_one_and_update({'userid' : userid}, {}
+    return "success"
+
+
+@app.route("/userinfo", methods=['GET'])
+
+def user_info():
+    username = request.args.get('username')
+    user_info = db['users'].find_one({"username": username})
+    return user_info
+
 
 
 @app.route("/fblogin", methods =['GET'])
