@@ -2,6 +2,7 @@
         padding-top: 70px;
         background-color: #33CC99;
     }
+    
     h1 {
 
         text-align: center;
@@ -34,9 +35,14 @@
         background-image: linear-gradient(to bottom, #FFFFFF, #E0E0E0);
         border-color: #CCCCCC #CCCCCC #CCCCCC;
     }
+
     .btn.btn-default:hover {
         color: #333333;
         background-color: #E0E0E0;
         background-image: linear-gradient(to bottom, #E0E0E0, #E0E0E0);
         border-color: #CCCCCC #CCCCCC #CCCCCC;
+    }
+
+    .center_box{
+        color:FFFFF0;
     }
