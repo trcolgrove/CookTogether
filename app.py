@@ -70,18 +70,16 @@ def main(args):
 @app.route("/index", methods=['GET'])
 @app.route("/", methods =['GET'])
 
-
 def index():
     return render_template('index.html')
-
 
 @app.route("/foodlist", methods = ['GET','POST'])
 
 def return_foodlist():
     foods = db['foods']
-    meal_id = request.args.get('group_id')
+    group_id = request.args.get('group_id')
     if request.method == 'GET':
-        cursor = (foods.find({'group_id': meal_id}))
+        cursor = (foods.find({'group_id': group_id}))
         return dumps(cursor)
     elif request.method == 'POST':
         foods.insert({'group_id' : group_id, 'username' : request.form['username'], 'ingredient': request.form['ingredient'], 'amount': request.form['amount']} )
@@ -94,25 +92,40 @@ def return_planner():
     return render_template('cooktogether_page1.html')
 
 
-@app.route("dietrestrict", methods=['POST'])
+@app.route("/dietrestrict", methods=['POST'])
 
 def edit_diet():
     user = request.args.get('user_id')
     diet = request.args.get('diet')
 
     users = db['users']
-    users.find_one_and_update({'userid' : userid}, {}
+    """users.find_one_and_update({'userid' : userid}, {}"""
     return "success"
 
+@app.route("/sendUserInfo", methods=['POST'])
 
-@app.route("/userinfo", methods=['GET'])
+def new_user():
+    users = db['users']
+    user_id = request.form['user_id']
+    diet_restrict = request.form['diet_restrict']
+    toInsert = {
+        "user_id" : user_id,
+        "diet_restrict" : diet_restrict
+    }
+    users.insert(toInsert)
+    cursor = users.find()
+    return dumps(cursor)
+
+"""@app.route("/addUserToGroup")
+
+def"""
+
+@app.route("/userinfo.json", methods=['GET'])
 
 def user_info():
     username = request.args.get('username')
     user_info = db['users'].find_one({"username": username})
     return user_info
-
-
 
 @app.route("/fblogin", methods =['GET'])
 
