@@ -19,3 +19,6 @@ Zoe Monosson, Sylvie Abookire, Aditi Ashok, Thomas Colgrove
 ##Goals:
 - Almost all of the components of our site are in place in some form or another. Now comes the tricky part: putting everything together
 
+#Comments
+1. What's next?
+2. "Also trying to create the concept of User Profiles with specific settings has proved a bit challenging." --yes it is.  Authorization is much more difficult than authentication.
