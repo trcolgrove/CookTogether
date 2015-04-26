@@ -99,7 +99,7 @@ def return_planner():
 def edit_diet():
     user = request.args.get('user_id')
     diet = request.args.get('diet')
-    
+
     users = db['users']
     users.find_one_and_update({'userid' : userid}, {}
     return "success"
