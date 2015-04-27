@@ -1,22 +1,14 @@
 var username = '';
 var ingredient = '';
 var amount = '';
-
+var list_num = 0;
+var group_name = "The Food Legends"
+var collaborators = "trcolgrove"
 var ingredients = [];
 $(document).ready(function(){
 
-  $.getJSON('/foodlist?meal_id=0', function( data ) {
-      var init_meal = data;
-      for(var i = 0; i < init_meal.length; i++){
-        username = init_meal[i].username;
-        ingredient = init_meal[i].ingredient;
-        amount = init_meal[i].amount;
-        ingredients.push(ingredient);
-        listIngredient();
 
-      }
-      console.log(ingredients);
-  });
+  pollDB();
 
   $('.inputbox').change( function() {
       var date = Date();
@@ -40,12 +32,33 @@ $(document).ready(function(){
     ingredients.push(ingredient);
     listIngredient();
     $.post('/foodlist?meal_id=0', {'username':username, 'ingredient':ingredient, 'amount':amount});
+    list_num++;
     clearInputs();
   });
-  $('#generate').click(function() {
-          getRecipes();
-  });
+
+  $('.name').text(group_name);
+
+  setInterval(pollDB, 10000)
 });
+
+
+function pollDB(){
+  $.getJSON('/foodlist?meal_id=0', function( data ) {
+      var init_meal = data;
+      for(var i = list_num; i < init_meal.length; i++){
+        username = init_meal[i].username;
+        ingredient = init_meal[i].ingredient;
+        amount = init_meal[i].amount;
+        ingredients.push(ingredient);
+        listIngredient();
+      }
+
+      list_num = init_meal.length;
+      console.log(list_num);
+  });
+
+}
+
 
 function clearInputs(){
   $('#ingr_input').val('');
@@ -54,9 +67,9 @@ function clearInputs(){
 }
 
 function listIngredient(){
-  $('#userlist').prepend('<li class="list-group-item">' + "placeholder" + '</li>');
-  $('#ingredientlist').prepend('<li class=list-group-item>' +  ingredient + '</li>');
-  $('#amountlist').prepend('<li class="list-group-item">' +  amount + '</li>');
+  $('#userlist').prepend('<li class="list-group-item" id="foodlistitem">' + "placeholder" + '</li>');
+  $('#ingredientlist').prepend('<li class=list-group-item id="foodlistitem">' +  ingredient + '</li>');
+  $('#amountlist').prepend('<li class="list-group-item" id="foodlistitem">' +  amount + '</li>');
 }
 
 function getRecipes(){
@@ -80,8 +93,7 @@ function getRecipes(){
 
           $("#recipes").append("<h3>" + recipe.label + "</h3>");
           $("#recipes").append("<img src=" + recipe.image + " alt=" + recipe.label + ">");
-          console.log(recipe.url);
-          $("#recipes").append("<p>source: <a href=" + recipe.url + ">" + recipe.source + "</a></p>");
+          $("#recipes").append("<p>source: <a href=' + recipe.url + '>" + recipe.source + "</a></p>");
           $("#recipes").append("<p>servings: "+ recipe.yield + "</p>");
 
           var newentry = "<p> ingredients : "

@@ -79,8 +79,8 @@ def return_foodlist():
     foods = db['foods']
     group_id = request.args.get('group_id')
     if request.method == 'GET':
-        cursor = (foods.find({'group_id': group_id}))
-        return dumps(cursor)
+        food_list = foods.find({'group_id': group_id}).sort('_id',pymongo.ASCENDING)
+        return dumps(food_list)
     elif request.method == 'POST':
         foods.insert({'group_id' : group_id, 'username' : request.form['username'], 'ingredient': request.form['ingredient'], 'amount': request.form['amount']} )
         return "success"

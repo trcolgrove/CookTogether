@@ -5,17 +5,19 @@
  */
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
-$(function() {
-    $('body').on('click', '.page-scroll a', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
-    });
+
+$('#generate').click(function() {
+        getRecipes();
+        $('#generate').click(function(event) {
+            $('html, body').animate({
+                scrollTop: $('#recipe-section').offset().top
+            }, 1500);
+        });
 });
 
 // Floating label headings for the contact form
+
+
 $(function() {
     $("body").on("input propertychange", ".floating-label-form-group", function(e) {
         $(this).toggleClass("floating-label-form-group-with-value", !! $(e.target).val());
@@ -27,6 +29,7 @@ $(function() {
 });
 
 // Highlight the top nav as scrolling occurs
+
 $('body').scrollspy({
     target: '.navbar-fixed-top'
 })
