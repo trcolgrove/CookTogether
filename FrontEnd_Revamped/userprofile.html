@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>CookTogether</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,8 +22,8 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-
 </head>
+
 
 <body id="page-top" class="index">
 
@@ -48,11 +48,18 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#about">About</a>
+                        <a href='about.html'>About</a>
                     </li>
                     <li class="page-scroll">
                         <a href="mailto:aditi.ashok@tufts.edu">Contact</a>
                     </li>
+                    <!--Facebook login button -->
+                    <li class = "page-scroll">
+                        <br>
+                     <div id="status"></div>
+                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="large", auto_logout_link="true">
+                            </fb:login-button>
+                        </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -60,48 +67,76 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- OUR LOGO WILL GO HERE! -->
-                  
-                    <div class="intro-text">
-                        <!-- we need a better slogan than this -->
-                        <span class="name">Cook Together</span>
-                          <img class="img-responsive" src="img/cook_together_logo.jpg" style="height:50%;width:50%;" alt=""> 
-                          <span class="name" style="font-size:40px;"> Why Cook Alone? </span>
-                        <hr class="star-light">
-                        <span class="skills">Get Started Now</span>
-                        <div class="col-md-12 text-center"> 
-                         <!-- Facebook login button goes here! -->
-                        <div id="status"></div>
-                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="xlarge", auto_logout_link="true">
-                            </fb:login-button>
-                    </div>
+
+<header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-responsive" src="img/placeholder_image.jpg" style="height:60%;width:60%;" alt=""> 
+            </div>
+
+            <div class="col-md-8"> 
+                <div class="intro-text">
+                    <span class="name" style="text-align:center;font-size:55px;">[UserName]</span> 
+                    <p>  Location: </p> <!--GEOLOCATION -->
+                    <p> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
                 </div>
             </div>
-        </div>
-    </header>
+            </div>
 
-  
-
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; CookTogether 2015
-                    </div>
+        <div class="row">
+            <div class="col">
+                <div class="col-md-4">
+                    <h2> Friends List </h2>
+                    <li> Friend1 </li>
                 </div>
             </div>
-        </div>
-    </footer>
 
+            <div class="col">
+                <div class="col-md-4">
+                    <h2> Meals </h2>
+                    <li> Meal1 </li>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="col-md-4">
+                    <h2> Past Recipes </h2>
+                    <li> Recipe 1 </li>
+                </div>
+            </div>
+
+        </div>
     
     </div>
+
+
+</header>
+
+  <footer class="text-center">
+            <div class="footer-above">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col col-md-4">
+                        </div>
+                        <div class="footer-col col-md-4">
+                            <h3> Back To Top </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <div class="footer-below">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            Copyright &copy; CookTogether 2015
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>   
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -120,7 +155,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
-
     <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -133,7 +167,8 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
-    } else if (response.status === 'not_authorized') {
+    } 
+    /*else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
         'in with Facebook.';
@@ -143,6 +178,7 @@
       document.getElementById('status').innerHTML = 'Please log ' +
         'in with Facebook.';
     }
+    */
   }
 
   // This function is called when someone finishes with the Login
@@ -192,15 +228,16 @@
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
+  /*function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Logged in as ' + response.name;
     });
-  }
+  }*/
 </script>
+
 </body>
 
 </html>

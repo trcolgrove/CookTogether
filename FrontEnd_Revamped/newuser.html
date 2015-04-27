@@ -48,10 +48,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#portfolio">Profile</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">My Meals</a>
+                        <a href="#about">About</a>
                     </li>
                     <li class="page-scroll">
                         <a href="mailto:aditi.ashok@tufts.edu">Contact</a>
@@ -63,75 +60,66 @@
         <!-- /.container-fluid -->
     </nav>
 
-  
-  <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-text">
-                        <span class="name">Group Name</span>
-                    </div>
-                </div>
-            </div>
+<header>
 
-            <div class="col-md-12">
-                <h2>Collaborators</h2>
-            </div>
-
-            <div class="col">
-                <div class="col-md-4">
-                    <h2> Collaborator </h2>
-                    <p> [YOUR NAME HERE] </p>
-                    <ul class="list-group" id='userlist'></ul>
-                </div>
-            </div>
-
-            <div class="col">
-                 <div class="col-md-3">
-                    <h2> Ingredient </h2>
-                    <input type="text" id="ingr_input" name="username" class="inputbox" size="25" />
-                    <ul class="list-group" id='ingredientlist'></ul>
-                    
-                </div>
-            </div>
-
-            
-            <div class="col">
-                <div class="col-md-3">
-                    <h2> Amount </h2>
-                        <input type="text" id="amount_input" name="username" class="inputbox" size="17" />
-                    <ul class="list-group" id='amountlist'></ul>
-                 </div>
-            </div>
-        
-            <div class="col">
-                <div class="col-md-2">
-                 <h2 style="color:#18bc9c;"> Add </h2>                  
-                 <a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add Ingredient</a>
-                </div> 
-            </div>
-
-
-            <div class = "row">
-                <div class="col-md-12">
-                    <h1 style="color:#18bc9c;"> Add </h1>
-                    <h1 style="color:#18bc9c;"> Add </h1>
-                    <a href="#" class="btn btn-primary btn-lg">Generate Recipes <span class="glyphicon glyphicon-cutlery"></span></a>
-                </div>
-            </div>
-        
-    </header>  
-
-<section id="recipes">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Recipes</h2>
-                <hr class="star-primary">
-                <p> This is where the generated recipes go </p>
-            </div>
+        <h1> Welcome to CookTogether </h1>
+        <h3> To complete your profile, tell us what kind of food you eat. </h3>
+        
+        <form role="form">
+            <div class = "row">
+                    <div class="col-md-4">
+                        <label class ="checkbox"><input type="checkbox" value="">Low-Carb
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">High-Protein
+                        </label>
+                        <label class ="checkbox"><input type="checkbox" value="">Low-Fat
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Balanced
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">High-Fiber
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Low-Sodium
+                        </label> 
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class ="checkbox"><input type="checkbox" value="">No-Sugar
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Sugar-Conscious
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value=""> Vegetarian
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Vegan
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Paleo
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Gluten-Free
+                        </label> 
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class ="checkbox"><input type="checkbox" value="">Wheat-Free
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Dairy
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Egg-Free
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Soy-Free
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">No-Tree-Nuts
+                        </label> 
+                        <label class ="checkbox"><input type="checkbox" value="">Low-Potassium
+                        </label> 
+                    </div>
+
+
+                   
         </div>
-    </div>
+    </form>
+
+
+</header>
 
   <footer class="text-center">
             <div class="footer-above">
@@ -155,9 +143,8 @@
                     </div>
                 </div>
             </div>
-        </footer>   
-
-  <!-- jQuery -->
+        </footer>  
+ <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -174,7 +161,4 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
-
-</body>
 </html>
-
