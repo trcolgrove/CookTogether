@@ -89,7 +89,7 @@ def return_foodlist():
 @app.route("/plan", methods=['GET'])
 
 def return_planner():
-    return render_template('cooktogether_page1.html')
+    return render_template('meal_planner.html')
 
 
 @app.route("/dietrestrict", methods=['POST'])
@@ -116,9 +116,6 @@ def new_user():
     cursor = users.find()
     return dumps(cursor)
 
-"""@app.route("/addUserToGroup")
-
-def"""
 
 @app.route("/userinfo.json", methods=['GET'])
 

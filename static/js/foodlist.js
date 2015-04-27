@@ -4,24 +4,27 @@ var amount = '';
 
 var ingredients = [];
 $(document).ready(function(){
-  /*
+
   $.getJSON('/foodlist?meal_id=0', function( data ) {
       var init_meal = data;
       for(var i = 0; i < init_meal.length; i++){
         username = init_meal[i].username;
         ingredient = init_meal[i].ingredient;
         amount = init_meal[i].amount;
-        ingredients += ingredient;
+        ingredients.push(ingredient);
         listIngredient();
 
       }
+      console.log(ingredients);
   });
-  */
+
   $('.inputbox').change( function() {
       var date = Date();
       var id = this.id;
+      console.log(id);
       if(id == 'username_input'){
           username = $('#username_input').val();
+          console.log(username);
       }
       else if(id == 'ingr_input'){
           ingredient = $('#ingr_input').val();
@@ -33,14 +36,14 @@ $(document).ready(function(){
         throw 'invalid element id';
       }
   });
-  $('input[type=submit]').click(function(){
+  $('#add_ingr').click(function(){
     ingredients.push(ingredient);
     listIngredient();
-    //$.post('/foodlist?meal_id=0', {'username':username, 'ingredient':ingredient, 'amount':amount});
+    $.post('/foodlist?meal_id=0', {'username':username, 'ingredient':ingredient, 'amount':amount});
     clearInputs();
   });
   $('#generate').click(function() {
-      getRecipes();
+          getRecipes();
   });
 });
 
@@ -51,8 +54,8 @@ function clearInputs(){
 }
 
 function listIngredient(){
-  $('#userlist').prepend('<li class="list-group-item">' + username + '</li>');
-  $('#ingredientlist').prepend('<li class="list-group-item">' +  ingredient + '</li>');
+  $('#userlist').prepend('<li class="list-group-item">' + "placeholder" + '</li>');
+  $('#ingredientlist').prepend('<li class=list-group-item>' +  ingredient + '</li>');
   $('#amountlist').prepend('<li class="list-group-item">' +  amount + '</li>');
 }
 
@@ -62,7 +65,6 @@ function getRecipes(){
       url += "," + ingredients[i];
     }
     url += '&app_id=a9e44233&app_key=4e60143490cec408c5aaf35215ab8ef6'
-    console.log(url);
     $("#recipes").empty();
     $.ajax({
       url: url,
@@ -75,7 +77,13 @@ function getRecipes(){
         for( var i = 0; i < results.length; i++){
           var recipe = results[i].recipe;
           var ingr = recipe.ingredients;
+
           $("#recipes").append("<h3>" + recipe.label + "</h3>");
+          $("#recipes").append("<img src=" + recipe.image + " alt=" + recipe.label + ">");
+          console.log(recipe.url);
+          $("#recipes").append("<p>source: <a href=" + recipe.url + ">" + recipe.source + "</a></p>");
+          $("#recipes").append("<p>servings: "+ recipe.yield + "</p>");
+
           var newentry = "<p> ingredients : "
           for( var j = 0;  j < ingr.length; j++ ){
             newentry += ingr[j].food.label + ", "
