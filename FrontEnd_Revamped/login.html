@@ -123,6 +123,7 @@
 
     <script>
   // This is called with the results from from FB.getLoginStatus().
+  var new_user;
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -149,8 +150,16 @@
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
+    console.log('check login state called');
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
+     // if (new_user == true){
+     //   window.location = 'https://github.com/';
+     // }
+     // else if (!new_user) {
+   //     alert("redirect home");
+       // window.location = #home;
+    //  }
     });
   }
 
@@ -177,6 +186,26 @@
 
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
+    if (response.status === 'connected') {
+      //new_user= false;
+     // console.log(new_user);
+      // the user is logged in and has authenticated your
+      // app, and response.authResponse supplies
+      // the user's ID, a valid access token, a signed
+      // request, and the time the access token 
+      // and signed request each expire
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+  } else if (response.status === 'not_authorized') {
+    // new_user = true;
+    // console.log(new_user);
+      // the user is logged in to Facebook, 
+      // but has not authenticated your app
+  } else {
+     // new_user = false;
+      //console.log(new_user);
+      // the user isn't logged in to Facebook.
+  }
   });
 
   };
@@ -198,6 +227,7 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+        window.location = 'https://github.com';
     });
   }
 </script>
