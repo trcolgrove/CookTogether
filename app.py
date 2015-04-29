@@ -38,39 +38,15 @@ total_ids=0
 def main(args):
     global total_ids
     total_ids = 0
-    # First we'll add a few songs. Nothing is required to create the songs
-    # collection; it is created automatically when we insert.
-
-    foods = db['foods']
-
-    # Note that the insert method can take either an array or a single dict.
-
-    # Then we need to give Boyz II Men credit for their contribution to
-    # the hit "One Sweet Day".
-
-    #query = {'song': 'One Sweet Day'}
-
-    #song.update(query, {'$set': {'artist': 'Mariah Carey ft. Boyz II Men'}})
-
-    # Finally we run a query which returns all the hits that spent 10 or
-    # more weeks at number 1.
-
-    #cursor = songs.find({'weeksAtOne': {'$gte': 10}}).sort('decade', 1)
-
-    ### Since this is an example, we'll clean up after ourselves.
-
-    ### Only close the connection when your app is terminating
-
-    app.run(debug=True, port=33507)
-
-
+    app.run(debug=True, port=8000)
     client.close()
 
 @app.route("/index", methods=['GET'])
 @app.route("/", methods =['GET'])
+@app.route("/login", methods =['GET'])
 
 def index():
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route("/createGroup", methods=['GET'])
 
@@ -80,7 +56,7 @@ def create_group():
     total_ids += 1
     db["users"].update(
     { "username": username },
-    { "$addToSet":{"groups": total_ids} },
+    { "$addToSet":{"groups": str(total_ids)} },
     upsert=True)
     return str(total_ids)
 
@@ -102,39 +78,30 @@ def return_foodlist():
 def return_planner():
     return render_template('meal_planner.html')
 
-
-@app.route("/dietrestrict", methods=['POST'])
-
-def edit_diet():
-    user = request.args.get('user_id')
-    diet = request.args.get('diet')
-
-    users = db['users']
-    """users.find_one_and_update({'userid' : userid}, {}"""
-    return "success"
-
-
 """Sylvie: The following Code adds a html file to the server"""
 @app.route("/userprofile")
 
 def return_user_prof():
     return render_template('userprofile.html')
 
-@app.route("/getUserInfo", methods=['GET'])
-
-def getUserInfo():
-    users = db['users']
-    request.args.get('user_id')
-    users.insert({"username":username})
-    cursor = users.find()
-    return dumps(cursor)
-
 @app.route("/userinfo.json", methods=['GET'])
 
 def user_info():
+    users = db['users']
     username = request.args.get('username')
-    user_info = db['users'].find_one({"username": username})
-    return user_info
+    cursor = users.find({'username': username})
+    return dumps(cursor)
+
+@app.route("/sendUserInfo", methods=['POST'])
+
+def sendUser():
+    users = db['users']
+    username = request.form['username']
+    diet_restrict = request.form['dietrestrict']
+    group_ids = request.form['group_ids']
+    users.update({'username': username},{'username': username, 'diet_restrict': diet_restrict, 'group_ids': group_ids},  upsert=True)
+    cursor = users.find_one({'username':username})
+    return dumps(cursor)
 
 @app.route("/fblogin", methods =['GET'])
 

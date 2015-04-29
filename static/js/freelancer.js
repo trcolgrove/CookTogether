@@ -8,11 +8,9 @@
 
 $('#generate').click(function() {
         getRecipes();
-        $('#generate').click(function(event) {
-            $('html, body').animate({
-                scrollTop: $('#recipe-section').offset().top
-            }, 1500);
-        });
+        $('html, body').animate({
+          scrollTop: $('#recipe-section').offset().top
+        }, 1500);
 });
 
 // Floating label headings for the contact form
