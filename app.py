@@ -72,7 +72,7 @@ def user_info():
     if user == None:
         return '{}'
     else:
-        return dumps(cursor)
+        return dumps(users)
 
 # API Call to request a new group.
 # Methods: 'GET', 'POST'
@@ -129,7 +129,7 @@ def sendUser():
     diet_restrict = request.form.get('diet_restrict')
     groups = request.form.get('groups')
     friends = request.form.get('friends')
-    ##if user_id == None or username == None or diet_restrict == None or groups == None or friends == None:
+    #if user_id == None or username == None or diet_restrict == None or groups == None or friends == None:
     #    return "{error : whoops!, something is wrong with your data!}"
     users.update({'username': username},{'username': username, 'diet_restrict': diet_restrict, 'groups': groups, 'friends': friends, 'user_id': user_id },  upsert=True)
     cursor = users.find_one({'username':username})
