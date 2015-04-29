@@ -214,7 +214,8 @@
             $.getJSON('/userinfo.json?user_id='+user.id, function(data){
             //store data.usersgroupIDS
             console.log("in GET");
-            console.log(data['user_id']);
+            console.log(data);
+            //console.log(data['user_id']);
               if (data['user_id']=={}) {
                 console.log("in conditional before post");
                 $.post('/sendUserInfo', {'username':user.name, 'user_id':user.id, 'groups':[], 'diet_restrict':[], 'friends':friends});
