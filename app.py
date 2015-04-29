@@ -46,7 +46,7 @@ def main(args):
 @app.route("/login", methods =['GET'])
 
 def index():
-    return render_template('login.html')
+    return render_template('newlogin.html')
 
 @app.route("/createGroup", methods=['GET'])
 
