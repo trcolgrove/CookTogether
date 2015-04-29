@@ -113,6 +113,13 @@ def edit_diet():
     """users.find_one_and_update({'userid' : userid}, {}"""
     return "success"
 
+
+"""Sylvie: The following Code adds a html file to the server"""
+@app.route("/userprofile")
+
+def return_user_prof():
+    return render_template('userprofile.html')
+
 @app.route("/getUserInfo", methods=['GET'])
 
 def getUserInfo():

@@ -12,13 +12,13 @@
     <title>CookTogether</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="/static/css/freelancer.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -74,12 +74,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img class="img-responsive" src="img/placeholder_image.jpg" style="height:60%;width:60%;" alt=""> 
+                <img class="img-responsive" src="https://graph.facebook.com/tcolgrove/picture?type=large" style="height:60%;width:60%;" alt="">
             </div>
 
-            <div class="col-md-8"> 
+            <div class="col-md-8">
                 <div class="intro-text">
-                    <span class="name" style="text-align:center;font-size:55px;">username</span> 
+                    <span class="name" style="text-align:center;font-size:55px;">username</span>
                     <p>  Location: </p> <!--GEOLOCATION -->
                     <p> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
                     <br>
@@ -112,7 +112,7 @@
             </div>
 
         </div>
-    
+
     </div>
 
 </header>
@@ -139,10 +139,10 @@
                     </div>
                 </div>
             </div>
-        </footer>   
+        </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="/static/js/jquery.js"></script>
     <script>
       $('#create_meal').on('click', function (e) {
           alert("clicked");
@@ -157,19 +157,19 @@
       </script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
+    <script src="/static/js/classie.js"></script>
+    <script src="/static/js/cbpAnimatedHeader.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="/static/js/jqBootstrapValidation.js"></script>
+    <script src="/static/js/contact_me.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/freelancer.js"></script>
+    <script src="/static/js/freelancer.js"></script>
     <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -208,7 +208,7 @@
         // /getUserInfo?username
       //jquery ajax request
       testAPI();
-    } 
+    }
     /*else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
