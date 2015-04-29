@@ -67,9 +67,12 @@ def return_planner():
 
 def user_info():
     users = db['users']
-    username = request.args.get('user_id')
-    cursor = users.find({'user_id': user_id})
-    return dumps(cursor)
+    user_id = request.args.get('user_id')
+    user = users.find_one({'user_id': user_id})
+    if user == None:
+        return '{}'
+    else:
+        return dumps(cursor)
 
 # API Call to request a new group.
 # Methods: 'GET', 'POST'
