@@ -72,7 +72,7 @@ def user_info():
     if user == None:
         return '{}'
     else:
-        return dumps(users)
+        return dumps(user)
 
 # API Call to request a new group.
 # Methods: 'GET', 'POST'
