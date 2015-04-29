@@ -80,10 +80,11 @@
             <div class="col-md-8">
                 <div class="intro-text">
                     <span class="name" style="text-align:center;font-size:55px;">
-                        <!-- check this, is it how it works? -->
+                        user.name
+                        <!-- check this, is it how it works? 
                         <script>
-                            user.username;
-                        </script>
+                           user.username;
+                        </script>-->
                     </span>
                     <p>  Location: </p> <!--GEOLOCATION -->
                     <p> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
@@ -149,16 +150,15 @@
     <!-- jQuery -->
     <script src="/static/js/jquery.js"></script>
     <script>
-      $('#create_meal').on('click', function (e) {
+    /*  $('#create_meal').on('click', function (e) {
           alert("clicked");
           //get request for groupID
           $.getJSON('/createGroup?' + user.username, function(data){
             console.log(data);
             groupID = data;
-            buildUrl('https://cooktogether.herokuapp.com', data)
+            buildUrl('https://cooktogether.herokuapp.com', data);
           });
-      })
-
+      });*/
       </script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -177,43 +177,59 @@
     <script src="/static/js/freelancer.js"></script>
     <script>
   // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      //Logged into your app and Facebook.
-      // store username
-      username = response.name;
-      //get friends list
-      FB.api(
-        "/{user-id}/friend-list-id",
-        function (response) {
-          if (response && !response.error) {
-          friends = response;
-          }
-        }
-      );
-       user = {
-        username : username;
-        groups : [];
-        diet_restrict : [];
-        friends : friends;
-      }
-      $.getJSON('/getUserInfo?' + user.username, function(data){
-        //store data.usersgroupIDS
-        user.groups = data['groups'];
-        user.diet_restrict = data['diet_restrict'];
-        console.log ("user.groups is " + user.groups +" and user.diet_restrict is "+ user.diet_restrict);
-        //.onload load those things
-      });
-        // /getUserInfo?username
-      //jquery ajax request
-      testAPI();
-    }
+    function statusChangeCallback(response) {
+      console.log('statusChangeCallback');
+      // The response object is returned with a status field that lets the
+      // app know the current login status of the person.
+      // Full docs on the response object can be found in the documentation
+      // for FB.getLoginStatus().
+      if (response.status === 'connected') {
+        //Logged into your app and Facebook.
+        FB.api('/me', function(response) {
+          //storing username
+          username = response.name;
+          id = response.id;
+          console.log(response);
+           //get friends list
+          FB.api('/me/friends', function (response) {
+            if (response && !response.error) {
+              friends = response;
+              console.log("friends got api response");
+              console.log(friends);
+            }
+            else {
+              friends = {};
+              console.log(response.error);
+              console.log("friends got an empty JSON");
+            }
+            user = {
+              name : username,
+              id : id,
+              groups : {},
+              diet_restrict : {},
+              friends : friends
+            };
+            console.log(user.name);
+            console.log(user);
+            $.getJSON('/userinfo.json?user_id='+user.id, function(data){
+            //store data.usersgroupIDS
+            console.log("in GET");
+              user.groups = data['groups'];
+              user.diet_restrict = data['diet_restrict'];
+              console.log (user.groups);
+              console.log(user.diet_restrict);
+              if (data['user_id']=={}) {
+                $.post('/sendUserInfo', {'username':user.name, 'user_id':user.id});
+              }
+              //.onload load those things
+            });
+          });
+  
+          
+        });
+          // /getUserInfo?username
+        //jquery ajax request
+        //testAPI();
     /*else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -226,7 +242,7 @@
     }
     */
   }
-
+}
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
@@ -286,8 +302,7 @@
  var buildUrl = function(base, qString) {
     var sep = (base.indexOf('?') > -1) ? '&' : '?';
     return base + sep + '=' + qString;
-}
-});
+  }
 
 </script>
 
