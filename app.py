@@ -27,15 +27,17 @@ MONGODB_URI = 'mongodb://heroku_app35358178:cld5pedb57lkvl6fj1af5ogvb3@ds035027.
 client = pymongo.MongoClient(MONGODB_URI)
 db = client.get_default_database()
 
-### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
+total_ids=0
 
+### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
 ###############################################################################
 # main
 ###############################################################################
 
 def main(args):
-
+    global total_ids
+    total_ids = 0
     # First we'll add a few songs. Nothing is required to create the songs
     # collection; it is created automatically when we insert.
 
@@ -64,14 +66,23 @@ def main(args):
 
     client.close()
 
-
-
-
 @app.route("/index", methods=['GET'])
 @app.route("/", methods =['GET'])
 
 def index():
     return render_template('index.html')
+
+@app.route("/createGroup", methods=['GET'])
+
+def create_group():
+    global total_ids
+    username = request.args.get('user')
+    total_ids += 1
+    db["users"].update(
+    { "username": username },
+    { "$addToSet":{"groups": total_ids} },
+    upsert=True)
+    return str(total_ids)
 
 @app.route("/foodlist", methods = ['GET','POST'])
 
@@ -102,20 +113,14 @@ def edit_diet():
     """users.find_one_and_update({'userid' : userid}, {}"""
     return "success"
 
-@app.route("/sendUserInfo", methods=['POST'])
+@app.route("/getUserInfo", methods=['GET'])
 
-def new_user():
+def getUserInfo():
     users = db['users']
-    user_id = request.form['user_id']
-    diet_restrict = request.form['diet_restrict']
-    toInsert = {
-        "user_id" : user_id,
-        "diet_restrict" : diet_restrict
-    }
-    users.insert(toInsert)
+    request.args.get('user_id')
+    users.insert({"username":username})
     cursor = users.find()
     return dumps(cursor)
-
 
 @app.route("/userinfo.json", methods=['GET'])
 

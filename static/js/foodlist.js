@@ -5,8 +5,26 @@ var list_num = 0;
 var group_name = "The Food Legends"
 var collaborators = "trcolgrove"
 var ingredients = [];
+var group_id = -1;
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
 $(document).ready(function(){
 
+  var args = getUrlVars();
+
+  group_id = args['group_id'];
 
   pollDB();
 
@@ -31,19 +49,22 @@ $(document).ready(function(){
   $('#add_ingr').click(function(){
     ingredients.push(ingredient);
     listIngredient();
-    $.post('/foodlist?meal_id=0', {'username':username, 'ingredient':ingredient, 'amount':amount});
+    var post_url = '/foodlist?group_id=' + group_id;
+    $.post(post_url, {'username':username, 'ingredient':ingredient, 'amount':amount});
     list_num++;
     clearInputs();
   });
 
   $('.name').text(group_name);
 
-  setInterval(pollDB, 10000)
+  setInterval(pollDB, 10000);
 });
 
 
 function pollDB(){
-  $.getJSON('/foodlist?meal_id=0', function( data ) {
+  var groupURL = "/foodlist?group_id=" + group_id;
+  console.log("group_id:", group_id);
+  $.getJSON(groupURL, function(data) {
       var init_meal = data;
       for(var i = list_num; i < init_meal.length; i++){
         username = init_meal[i].username;
@@ -51,7 +72,7 @@ function pollDB(){
         amount = init_meal[i].amount;
         ingredients.push(ingredient);
         listIngredient();
-      }
+   }
 
       list_num = init_meal.length;
       console.log(list_num);
