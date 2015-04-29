@@ -16,7 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
-    <link href = "test.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -144,10 +144,13 @@
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <script>
-
       $('#create_meal').on('click', function (e) {
           alert("clicked");
           //get request for groupID
+          $.getJSON('/createNewMeal?' + username, function(data){
+            //
+            //depends
+          });
           buildUrl('https://cooktogether.herokuapp.com', groupID)
       })
 
@@ -168,6 +171,12 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
     <script>
+    var user = {
+      username : response.name;
+      groups : [];
+      diet_restrict = [];
+      friends 
+    }
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -182,6 +191,10 @@
       username = response.name;
       $.getJSON('/getUserInfo?' + username, function(data){
         //store data.usersgroupIDS
+        user.groups = data['groups'];
+        user.diet_restrict = data['diet_restrict'];
+        var dist = calculateDistance(usersArr[i]['lat'], 
+          usersArr[i]['lng']);
         //store data.usersdietaryrestrictions
         //.onload load those things
       });
@@ -258,7 +271,7 @@
     });
   }*/
 
- /* var buildUrl = function(base, qString) {
+ /* var buildUrl = function(base, user.groupID) {
     var sep = (base.indexOf('?') > -1) ? '&' : '?';
     return base + sep + key + '=' + value;
 }
