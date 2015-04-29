@@ -147,11 +147,11 @@
       $('#create_meal').on('click', function (e) {
           alert("clicked");
           //get request for groupID
-          $.getJSON('/createNewMeal?' + username, function(data){
-            //
-            //depends
+          $.getJSON('/createGroup?' + user.username, function(data){
+            console.log(data);
+            groupID = data;
+            buildUrl('https://cooktogether.herokuapp.com', data)
           });
-          buildUrl('https://cooktogether.herokuapp.com', groupID)
       })
 
       </script>
@@ -171,12 +171,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
     <script>
-    var user = {
-      username : response.name;
-      groups : [];
-      diet_restrict = [];
-      friends 
-    }
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -189,13 +183,26 @@
       //Logged into your app and Facebook.
       // store username
       username = response.name;
-      $.getJSON('/getUserInfo?' + username, function(data){
+      //get friends list
+      FB.api(
+        "/{user-id}/friend-list-id",
+        function (response) {
+          if (response && !response.error) {
+          friends = response;
+          }
+        }
+      );
+       user = {
+        username : username;
+        groups : [];
+        diet_restrict : [];
+        friends : friends;
+      }
+      $.getJSON('/getUserInfo?' + user.username, function(data){
         //store data.usersgroupIDS
         user.groups = data['groups'];
         user.diet_restrict = data['diet_restrict'];
-        var dist = calculateDistance(usersArr[i]['lat'], 
-          usersArr[i]['lng']);
-        //store data.usersdietaryrestrictions
+        console.log ("user.groups is " + user.groups +" and user.diet_restrict is "+ user.diet_restrict);
         //.onload load those things
       });
         // /getUserInfo?username
@@ -271,14 +278,10 @@
     });
   }*/
 
- /* var buildUrl = function(base, user.groupID) {
+ var buildUrl = function(base, qString) {
     var sep = (base.indexOf('?') > -1) ? '&' : '?';
-    return base + sep + key + '=' + value;
+    return base + sep + '=' + qString;
 }
-
-$( "#target" ).click(buildUrl('https://cooktogether.herokuapp.com', key, value) {
-  console.log( "Handler for .click() called." );
-*/
 });
 
 </script>
