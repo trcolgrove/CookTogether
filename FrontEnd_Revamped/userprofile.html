@@ -21,6 +21,7 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 </head>
 
@@ -78,12 +79,12 @@
 
             <div class="col-md-8"> 
                 <div class="intro-text">
-                    <span class="name" style="text-align:center;font-size:55px;">[UserName]</span> 
+                    <span class="name" style="text-align:center;font-size:55px;">username</span> 
                     <p>  Location: </p> <!--GEOLOCATION -->
                     <p> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
                     <br>
                     <br>
-                    <a href="#" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Create New Meal </a>
+                    <a href="#"class="btn btn-primary btn-lg" id="create_meal"><span class="glyphicon glyphicon-plus"></span> Create New Meal </a>
                 </div>
             </div>
             </div>
@@ -114,7 +115,6 @@
     
     </div>
 
-
 </header>
 
   <footer class="text-center">
@@ -143,6 +143,18 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    <script>
+      $('#create_meal').on('click', function (e) {
+          alert("clicked");
+          //get request for groupID
+          $.getJSON('/createNewMeal?' + username, function(data){
+            //
+            //depends
+          });
+          buildUrl('https://cooktogether.herokuapp.com', groupID)
+      })
+
+      </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -159,6 +171,12 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
     <script>
+    var user = {
+      username : response.name;
+      groups : [];
+      diet_restrict = [];
+      friends 
+    }
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -168,7 +186,20 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-      // Logged into your app and Facebook.
+      //Logged into your app and Facebook.
+      // store username
+      username = response.name;
+      $.getJSON('/getUserInfo?' + username, function(data){
+        //store data.usersgroupIDS
+        user.groups = data['groups'];
+        user.diet_restrict = data['diet_restrict'];
+        var dist = calculateDistance(usersArr[i]['lat'], 
+          usersArr[i]['lng']);
+        //store data.usersdietaryrestrictions
+        //.onload load those things
+      });
+        // /getUserInfo?username
+      //jquery ajax request
       testAPI();
     } 
     /*else if (response.status === 'not_authorized') {
@@ -239,6 +270,17 @@
         'Logged in as ' + response.name;
     });
   }*/
+
+ /* var buildUrl = function(base, user.groupID) {
+    var sep = (base.indexOf('?') > -1) ? '&' : '?';
+    return base + sep + key + '=' + value;
+}
+
+$( "#target" ).click(buildUrl('https://cooktogether.herokuapp.com', key, value) {
+  console.log( "Handler for .click() called." );
+*/
+});
+
 </script>
 
 </body>
