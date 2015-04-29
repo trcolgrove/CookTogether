@@ -79,7 +79,7 @@
 
             <div class="col-md-8"> 
                 <div class="intro-text">
-                    <span class="name" style="text-align:center;font-size:55px;">[UserName]</span> 
+                    <span class="name" style="text-align:center;font-size:55px;">username</span> 
                     <p>  Location: </p> <!--GEOLOCATION -->
                     <p> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
                     <br>
@@ -147,6 +147,8 @@
 
       $('#create_meal').on('click', function (e) {
           alert("clicked");
+          //get request for groupID
+          buildUrl('https://cooktogether.herokuapp.com', groupID)
       })
 
       </script>
@@ -166,7 +168,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
     <script>
-
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -176,7 +177,16 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-      // Logged into your app and Facebook.
+      //Logged into your app and Facebook.
+      // store username
+      username = response.name;
+      $.getJSON('/getUserInfo?' + username, function(data){
+        //store data.usersgroupIDS
+        //store data.usersdietaryrestrictions
+        //.onload load those things
+      });
+        // /getUserInfo?username
+      //jquery ajax request
       testAPI();
     } 
     /*else if (response.status === 'not_authorized') {
