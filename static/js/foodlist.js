@@ -114,7 +114,7 @@ function getRecipes(){
 
           $("#recipes").append("<h3>" + recipe.label + "</h3>");
           $("#recipes").append("<img src=" + recipe.image + " alt=" + recipe.label + ">");
-          $("#recipes").append("<p>source: <a href=' + recipe.url + '>" + recipe.source + "</a></p>");
+          $("#recipes").append('<p>source: <a href="' + recipe.url + '" target="_blank">' + recipe.source + "</a></p>");
           $("#recipes").append("<p>servings: "+ recipe.yield + "</p>");
 
           var newentry = "<p> ingredients : "
