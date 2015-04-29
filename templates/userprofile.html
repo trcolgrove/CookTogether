@@ -205,8 +205,8 @@
             user = {
               name : username,
               id : id,
-              groups : {},
-              diet_restrict : {},
+              groups : [],
+              diet_restrict : [],
               friends : friends
             };
             console.log(user.name);
@@ -214,12 +214,19 @@
             $.getJSON('/userinfo.json?user_id='+user.id, function(data){
             //store data.usersgroupIDS
             console.log("in GET");
-              user.groups = data['groups'];
-              user.diet_restrict = data['diet_restrict'];
-              console.log (user.groups);
-              console.log(user.diet_restrict);
+            console.log(data['user_id']);
               if (data['user_id']=={}) {
-                $.post('/sendUserInfo', {'username':user.name, 'user_id':user.id});
+                console.log("in conditional before post");
+                $.post('/sendUserInfo', {'username':user.name, 'user_id':user.id, 'groups':[], 'diet_restrict':[], 'friends':friends});
+                //REDIRECT TO PREFERENCES
+              }
+              else {
+                //REDIRECT TO PROFILE
+                console.log("in else");
+                user.groups = data['groups'];
+                user.diet_restrict = data['diet_restrict'];
+                console.log (user.groups);
+                console.log(user.diet_restrict);
               }
               //.onload load those things
             });

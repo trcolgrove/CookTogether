@@ -123,7 +123,6 @@
 
     <script>
   // This is called with the results from from FB.getLoginStatus().
-  var new_user;
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -132,8 +131,71 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
+        if (response.status === 'connected') {
+          //testAPI();
+          //Logged into your app and Facebook.
+        FB.api('/me', function(response) {
+          //storing username
+          username = response.name;
+          id = response.id;
+          console.log(response);
+           //get friends list
+          FB.api('/me/friends', function (response) {
+            if (response && !response.error) {
+              friends = response;
+              console.log("friends got api response");
+              console.log(friends);
+            }
+            else {
+              friends = {};
+              console.log(response.error);
+              console.log("friends got an empty JSON");
+            }
+            user = {
+              name : username,
+              id : id,
+              groups : [],
+              diet_restrict : [],
+              friends : friends
+            };
+            console.log(user.name);
+            console.log(user);
+            $.getJSON('/userinfo.json?user_id='+user.id, function(data){
+            //store data.usersgroupIDS
+            console.log("in GET");
+            console.log(data['user_id']);
+              if (data['user_id']=={}) {
+                console.log("in conditional before post");
+                $.post('/sendUserInfo', {'username':user.name, 'user_id':user.id, 'groups':[], 'diet_restrict':[], 'friends':friends});
+                //REDIRECT TO PREFERENCES
+              }
+              else {
+                //REDIRECT TO PROFILE
+                console.log("in else");
+                user.groups = data['groups'];
+                user.diet_restrict = data['diet_restrict'];
+                console.log (user.groups);
+                console.log(user.diet_restrict);
+              }
+              //.onload load those things
+            });
+          });   
+        });
+          // /getUserInfo?username
+        //jquery ajax request
+        //testAPI();
+    /*else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'in with Facebook.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'in with Facebook.';
+    }
+    */
+  }
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
