@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>User Preferences </title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,6 +23,21 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#next').click(function(){
+                var diet_restrict = [];
+                $.each($("input[name='pref']:checked"), function(){            
+                    diet_restrict.push($(this).val());
+                });
+                /* SEND ARRAY TO DATABASE */
+                /* NEED TO PUT IN A REDIRECT INSTEAD OF ALERT HERE */
+                alert("My food preferences are: " + diet_restrict.join(", "));
+
+            });
+        });
+</script>
 
 </head>
 
@@ -70,62 +85,62 @@
         <form role="form">
             <div class = "row">
                     <div class="col-md-4">
-                        <label class ="checkbox"><input type="checkbox" value="">Low-Carb
+                        <label class ="checkbox"><input type="checkbox" value="Low-Carb" name="pref">Low-Carb
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">High-Protein
+                        <label class ="checkbox"><input type="checkbox" value="High-Protein" name="pref">High-Protein
                         </label> 
                         <br/>    
-                        <label class ="checkbox"><input type="checkbox" value="">Low-Fat
+                        <label class ="checkbox"><input type="checkbox" value="Low-Fat" name="pref">Low-Fat
                         </label> 
                         <br/>    
-                        <label class ="checkbox"><input type="checkbox" value="">Balanced
+                        <label class ="checkbox"><input type="checkbox" value="Balanced" name="pref">Balanced
                         </label>
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">High-Fiber
+                        <label class ="checkbox"><input type="checkbox" value="High-Fiber" name="pref">High-Fiber
                         </label> 
                         <br/>    
-                        <label class ="checkbox"><input type="checkbox" value="">Low-Sodium
+                        <label class ="checkbox"><input type="checkbox" value="Low-Sodium" name="pref">Low-Sodium
                         </label>
                     </div>
 
                     <div class="col-md-4">
-                        <label class ="checkbox"><input type="checkbox" value="">No-Sugar
+                        <label class ="checkbox"><input type="checkbox" value="No-Sugar" name="pref">No-Sugar
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">Sugar-Conscious
+                        <label class ="checkbox"><input type="checkbox" value="Sugar-Conscious" name="pref">Sugar-Conscious
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value=""> Vegetarian
+                        <label class ="checkbox"><input type="checkbox" value="Vegetarian" name="pref"> Vegetarian
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">Vegan
+                        <label class ="checkbox"><input type="checkbox" value="Vegan" name="pref">Vegan
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">Paleo
+                        <label class ="checkbox"><input type="checkbox" value="Paleo" name="pref">Paleo
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">Gluten-Free
+                        <label class ="checkbox"><input type="checkbox" value="Gluten-Free" name="pref">Gluten-Free
                         </label>                         
                     </div>
 
                     <div class="col-md-4">
-                        <label class ="checkbox"><input type="checkbox" value="">Wheat-Free
+                        <label class ="checkbox"><input type="checkbox" value="Wheat-Free" name="pref">Wheat-Free
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">Dairy
+                        <label class ="checkbox"><input type="checkbox" value="Dairy" name="pref">Dairy
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">Egg-Free
+                        <label class ="checkbox"><input type="checkbox" value="Egg-Free" name="pref">Egg-Free
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">Soy-Free
+                        <label class ="checkbox"><input type="checkbox" value="Soy-Free" name="pref">Soy-Free
                         </label>
                         <br/> 
-                        <label class ="checkbox"><input type="checkbox" value="">No-Tree-Nuts
+                        <label class ="checkbox"><input type="checkbox" value="No-Tree-Nuts" name="pref">No-Tree-Nuts
                         </label> 
                         <br/>
-                        <label class ="checkbox"><input type="checkbox" value="">Low-Potassium
+                        <label class ="checkbox"><input type="checkbox" value="Low-Potassium" name="pref">Low-Potassium
                         </label> 
                     </div>         
         </div>
@@ -134,7 +149,7 @@
             <div class ="col-md-">
                 <br>
                 <br>
-                <a href="#"class="btn btn-primary btn-lg">Next </a>
+                <a href="#"class="btn btn-primary btn-lg" id="next">Next </a>
             </div>
 
         </div>
