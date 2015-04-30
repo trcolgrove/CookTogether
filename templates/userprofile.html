@@ -22,6 +22,12 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    <!--GEOLOCATION -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeLzjWfDaqBze8j7qKJL17XH4ZsMjsTx0&sensor=true">
+    </script>
 
 </head>
 
@@ -82,7 +88,7 @@
                     <span id="user_prof_header" class="name" style="text-align:left;text-indent:8%;cfont-size:55px;">
                     </span>
 
-                    <p class="text-left" style="text-indent:60px">  Location: </p> <!--GEOLOCATION -->
+                    <p class="text-left" style="text-indent:60px" id="location">  Location: </p> <!--GEOLOCATION -->
                     <p class="text-left" style="text-indent:60px" id="profile_pref_list"> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
                     <br>
                     <br>
@@ -146,6 +152,40 @@
     <script type = "text/javascript">
  //extra script
       </script>
+
+      <script>
+            //GEOLOCATION
+            $(document).ready(function() {
+
+              //I'm not doing anything else, so just leave
+              if(!navigator.geolocation) return;
+              
+              navigator.geolocation.getCurrentPosition(function(pos) {
+                geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+                geocoder.geocode({'latLng': latlng}, function(results, status) {
+                  if (status == google.maps.GeocoderStatus.OK) {
+                    //Check result 0
+                    var result = results[0];
+                    //look for locality tag and administrative_area_level_1
+                    var city = "";
+                    var state = "";
+                    for(var i=0, len=result.address_components.length; i<len; i++) {
+                      var ac = result.address_components[i];
+                      if(ac.types.indexOf("locality") >= 0) city = ac.long_name;
+                      if(ac.types.indexOf("administrative_area_level_1") >= 0) state = ac.long_name;
+                    }
+                    //only report if we got Good Stuff
+                    if(city != '' && state != '') {
+                      $("#location").append(city+", "+state);
+                    }
+                  } 
+                });
+              
+              });
+
+        })
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
