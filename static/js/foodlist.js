@@ -91,7 +91,15 @@ $(document).ready(function(){
 
   $.getJSON('/groupinfo.json?group_id='+groupID, function(response) {
     console.log(response);
+    
     $('.groupName').text(response.group_name);
+    //var collaborators = response.user_ids
+    /*
+    for(var i = 0; i < collaborators.length; i++){
+      var toInsert = '<img src= "https://graph.facebook.com/' + collaborators[i] + '/picture?type=large" class="img-circle" style="width:70%;" style="height:70%;" alt="Generic placeholder thumbnail">';
+      $('#group_pictures').append(toInsert);
+    }*/
+    
   });
   
   setInterval(pollDB, 10000);
