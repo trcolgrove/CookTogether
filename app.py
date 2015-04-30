@@ -105,7 +105,7 @@ def get_group_info():
     groups = db['groups']
     group_id = request.args.get("group_id")
     cursor = groups.find_one("group_id")
-    return dumps(group)sssssss
+    return dumps(group)
 
 # API Call to handle changes in group foodlist/mealplanner data
 # Methods: 'GET', 'POST'
