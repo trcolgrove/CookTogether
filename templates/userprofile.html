@@ -173,11 +173,12 @@
                     $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
                 }
             }
-            for(var i = 0 ; i < user.groups.length; i++){
-              $('#group_list').append('<li class="list-group-item" id="group_list_item"> <a href=/plan?group_id=2>'+user.groups[i].group_name+'</a> </li>');
-            }
             for(var i = 0 ; i < user.friends.data.length; i++){
               $('#profile_friend_list').append('<li class="list-group-item" id="group_list_item">' + user.friends.data[i].name + '</li>');
+            }
+            for(var i = 0 ; i < user.groups.length; i++){
+            $('#group_list').append('<li class="list-group-item" id="group_list_item">' + '<a href = "/plan?group_id='+user.groups[i].group_id+'">'+user.groups[i].group_name+'</a></li>');
+            console.log(user.groups[i].group_id);
             }
             FB.api ('/me?fields=picture.height(300).width(300)', function(response) {
                 console.log(response.picture);
