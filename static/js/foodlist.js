@@ -94,12 +94,14 @@ $(document).ready(function(){
   $.getJSON('/groupinfo.json?group_id='+groupID, function(response) {
 
     $('.groupName').text(response.group_name);
-    //var collaborators = response.user_ids
-    /*
+    var collaborators = response.user_ids;
+    console.log("OCEAN MAN TAKE ME BY THE HAND LEAD ME TO THE LAAAAAND");
+    console.log(collaborators);
+    
     for(var i = 0; i < collaborators.length; i++){
-      var toInsert = '<img src= "https://graph.facebook.com/' + collaborators[i] + '/picture?type=large" class="img-circle" style="width:70%;" style="height:70%;" alt="Generic placeholder thumbnail">';
+      var toInsert =  '<div class="col-sm-6 col-md-2"> <img src= "https://graph.facebook.com/' + collaborators[i] +'/picture?width=100&height=1000" class="img-circle" alt="Generic placeholder thumbnail"> </a></div>';
       $('#group_pictures').append(toInsert);
-    }*/
+    }
     
   });
 
