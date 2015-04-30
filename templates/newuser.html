@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>User Preferences </title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#next').click(function(){
+                var diet_restrict = [];
+                $.each($("input[name='pref']:checked"), function(){
+                    diet_restrict.push($(this).val());
+                });
+                //load FB api
+                FB.api('/me', function (response){
+                    current_user = response.id;
+                     $.getJSON('/userinfo.json?user_id='+current_user, function(data){
+                        user = data;
+                        console.log(user);
+                        user.diet_restrict = diet_restrict;
+                        $.post('sendUserInfo', user, function(response){
+                            console.log(response);
+                        });
+                    });
+                });
+                /* SEND ARRAY TO DATABASE */
+
+
+
+                /* NEED TO PUT IN A REDIRECT INSTEAD OF ALERT HERE */
+                alert("My food preferences are: " + diet_restrict.join(", "));
+
+            });
+        });
+</script>
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">CookTogether</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">About</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="mailto:aditi.ashok@tufts.edu">Contact</a>
+                    </li>
+                    <!--Facebook login button -->
+                    <li class = "page-scroll">
+                        <br>
+                     <div id="status"></div>
+                            <fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();" size="large", auto_logout_link="true">
+                            </fb:login-button>
+                        </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+<header>
+
+    <div class="container">
+        <h1> Welcome to CookTogether </h1>
+        <h3> To complete your profile, tell us what kind of food you eat. </h3>
+
+        <form role="form">
+            <div class = "row">
+                    <div class="col-md-4">
+                        <label class ="checkbox"><input type="checkbox" value="Low-Carb" name="pref">Low-Carb
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="High-Protein" name="pref">High-Protein
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Low-Fat" name="pref">Low-Fat
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Balanced" name="pref">Balanced
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="High-Fiber" name="pref">High-Fiber
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Low-Sodium" name="pref">Low-Sodium
+                        </label>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class ="checkbox"><input type="checkbox" value="No-Sugar" name="pref">No-Sugar
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Sugar-Conscious" name="pref">Sugar-Conscious
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Vegetarian" name="pref"> Vegetarian
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Vegan" name="pref">Vegan
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Paleo" name="pref">Paleo
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Gluten-Free" name="pref">Gluten-Free
+                        </label>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class ="checkbox"><input type="checkbox" value="Wheat-Free" name="pref">Wheat-Free
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Dairy" name="pref">Dairy
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Egg-Free" name="pref">Egg-Free
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Soy-Free" name="pref">Soy-Free
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="No-Tree-Nuts" name="pref">No-Tree-Nuts
+                        </label>
+                        <br/>
+                        <label class ="checkbox"><input type="checkbox" value="Low-Potassium" name="pref">Low-Potassium
+                        </label>
+                    </div>
+        </div>
+
+        <div class ="row">
+            <div class ="col-md-">
+                <br>
+                <br>
+                <a href="#"class="btn btn-primary btn-lg" id="next">Next </a>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+</header>
+
+  <footer class="text-center">
+            <div class="footer-above">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col col-md-4">
+                        </div>
+                        <div class="footer-col col-md-4">
+                            <h3> Back To Top </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <div class="footer-below">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            Copyright &copy; CookTogether 2015
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+ <!-- jQuery -->
+    <script src="/static/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="/static/js/classie.js"></script>
+    <script src="/static/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/static/js/jqBootstrapValidation.js"></script>
+    <script src="/static/js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/js/freelancer.js"></script>
+
+     <script>
+  // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallback(response) {
+      console.log('statusChangeCallback');
+      console.log(response);
+      // The response object is returned with a status field that lets the
+      // app know the current login status of the person.
+      // Full docs on the response object can be found in the documentation
+      // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+          // Logged into your app and Facebook.
+          testAPI();
+        }
+    else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+     // document.getElementById('status').innerHTML = 'Please log ' +
+       // 'in with Facebook.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      //document.getElementById('status').innerHTML = 'Please log ' +
+        //'in with Facebook.';
+    }
+}
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1401516633500673',
+    cookie     : true,  // enable cookies to allow the server to access
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.2' // use version 2.2
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+     // document.getElementById('status').innerHTML =
+       // 'Logged in as ' + response.name;
+    });
+  }
+
+ var buildUrl = function(base, qString) {
+    var sep = (base.indexOf('?') > -1) ? '&' : '?';
+    return base + sep + '=' + qString;
+  }
+
+</script>
+</html>
