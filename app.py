@@ -10,6 +10,7 @@ __author__ = 'mongolab'
 
 import sys
 import pymongo
+import datetime
 
 from bson import Binary, Code
 from bson import json_util
@@ -90,14 +91,15 @@ def create_group():
     user_id = request.args.get('user_id')
     group_name = request.args.get('group_name')
 
-    total_ids += 1
-    new_group = {'group_name': group_name, 'group_id':str(total_ids)}
+    group_id = datetime.datetime.now().isoformat()
+
+    new_group = {'group_name': group_name, 'group_id':str(group_id)}
     db["users"].update(
     { "user_id": user_id },
-    { "$addToSet":{"groups": {'group_name': group_name, 'group_id':str(total_ids)}}},
+    { "$addToSet":{"groups": {'group_name': group_name, 'group_id':str(group_id)}}},
     upsert=True)
-    db["groups"].insert( {'group_id' : str(total_ids),'group_name' : group_name, 'user_id': [user_id] })
-    return str(total_ids)
+    db["groups"].insert( {'group_id' : str(group_id),'group_name' : group_name, 'user_id': [user_id] })
+    return str(group_id)
 
 @app.route("/groupinfo.json")
 
