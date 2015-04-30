@@ -150,8 +150,8 @@
     <!-- jQuery -->
     <script src="/static/js/jquery.js"></script>
     <script>
-    /*  $('#create_meal').on('click', function (e) {
-          alert("clicked");
+    $('#create_meal').on('click', function (e) {
+          alert("create meal clicked");
           //get request for groupID
           $.getJSON('/createGroup?' + user.username, function(data){
             console.log(data);
@@ -263,8 +263,8 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Logged in as ' + response.name;
+      //document.getElementById('status').innerHTML =
+      // 'Logged in as ' + response.name;
     });
   }
 
