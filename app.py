@@ -96,10 +96,10 @@ def create_group():
     { "user_id": user_id },
     { "$addToSet":{"groups": {'group_name': group_name, 'group_id':str(total_ids)}}},
     upsert=True)
-    db["groups"].insert( {'group_id' : group_id,'group_name' : group_name, 'users': [users])
+    db["groups"].insert( {'group_id' : str(total_ids),'group_name' : group_name, 'user_id': [user_id] })
     return str(total_ids)
 
-app.route("/groupinfo.json")
+@app.route("/groupinfo.json")
 
 def get_group_info():
     groups = db['groups']
@@ -152,12 +152,6 @@ def sendUser():
     users.update({'username': username},{'username': username, 'diet_restrict': diet_restrict, 'groups': groups, 'friends': friends, 'user_id': user_id },  upsert=True)
     cursor = users.find_one({'username':username})
     return dumps(cursor)
-
-@app.route("/getGroupID" , methods=['GET']){
-    users = db[users]
-
-}
-
 
 
 @app.route("/newuser")
