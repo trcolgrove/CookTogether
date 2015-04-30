@@ -2,8 +2,8 @@ var username = '';
 var ingredient = '';
 var amount = '';
 var list_num = 0;
-var group_name = "The Food Legends"
-var collaborators = "trcolgrove"
+var group_name = ""
+var collaborators = ""
 var ingredients = [];
 var group_id = -1;
 
@@ -94,8 +94,9 @@ $(document).ready(function(){
     list_num++;
     clearInputs();
   });
-
-  $('.name').text(group_name);
+//$.getJSON('')
+//group_name = 
+  $('.groupName').text(group_name);
 
   setInterval(pollDB, 10000);
 });
