@@ -74,17 +74,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img class="img-responsive" src="https://graph.facebook.com/tcolgrove/picture?type=large" style="height:60%;width:60%;" alt="">
+                <img class="user_prof_picture" src=  style="height:60%;width:60%;" alt="Profile Picture">
             </div>
 
             <div class="col-md-8">
                 <div class="intro-text">
                     <span id="user_prof_header" class="name" style="text-align:center;font-size:55px;">
-
-                        <!-- check this, is it how it works?
-                        <script>
-                           user.username;
-                        </script>-->
                     </span>
                     <p>  Location: </p> <!--GEOLOCATION -->
                     <p id="profile_pref_list"> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
@@ -165,7 +160,12 @@
             user = data;
             $('#user_prof_header').text(response.name)
             for(var i = 0 ; i < user.diet_restrict.length; i++){
-              $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
+                if (i == user.diet_restrict.length - 1) {
+                    $('#profile_pref_list').append(user.diet_restrict[i]);
+                }
+                else {
+                    $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
+                }
             }
             for(var i = 0 ; i < user.groups.length; i++){
               $('#group_list').append('<li class="list-group-item" id="group_list_item"> <a href=/plan?group_id=2>'+user.groups[i].group_name+'</a> </li>');
@@ -173,9 +173,14 @@
             for(var i = 0 ; i < user.friends.data.length; i++){
               $('#profile_friend_list').append('<li class="list-group-item" id="group_list_item">' + user.friends.data[i].name + '</li>');
             }
+            FB.api ('/me?fields=picture', function(response) {
+                console.log(response.picture);
+
+                $('#user_prof_picture').attr('src', response.picture.data.url);
             });
-          });
-        } else if (response.status === 'not_authorized') {
+          })
+        });
+    } else if (response.status === 'not_authorized') {
           window.location = "/login"
         } else {
           window.location = "/login"
