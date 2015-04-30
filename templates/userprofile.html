@@ -91,6 +91,7 @@
                     <br>
                     <br>
                     <a href="#"class="btn btn-primary btn-lg" id="create_meal"><span class="glyphicon glyphicon-plus"></span> Create New Meal </a>
+                    <input type="text" id="group-name-input" name="group-name" class="inputbox" size="25" />
                 </div>
             </div>
             </div>
@@ -177,7 +178,7 @@
               $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
             }
             for(var i = 0 ; i < user.groups.length; i++){
-              $('#group_list').append('<li class="list-group-item" id="group_list_item">' + user.groups[i] + '</li>');
+              $('#group_list').append('<li class="list-group-item" id="group_list_item">' + user.groups[i].group_name + '</li>');
             }
             for(var i = 0 ; i < user.friends.data.length; i++){
               $('#profile_friend_list').append('<li class="list-group-item" id="group_list_item">' + user.friends.data[i].name + '</li>');
@@ -190,9 +191,12 @@
           window.location = "/login"
         }
     }
-    
+
     $('#create_meal').on('click', function (e) {
-      $.getJSON('/createGroup?user_id=' + user.user_id, function(data){
+      var input = $('#group-name-input').val();
+      var url = '/createGroup?user_id=' + String(user.user_id) + '&group_name=' + input;
+      console.log(url);
+      $.getJSON(url , function(data){
         groupID = data;
         window.location = '/plan?group_id='+data;
       });

@@ -85,11 +85,15 @@ def user_info():
 
 def create_group():
     global total_ids
+    print request.args
+
     user_id = request.args.get('user_id')
+    group_name = request.args.get('group_name')
+
     total_ids += 1
     db["users"].update(
     { "user_id": user_id },
-    { "$addToSet":{"groups": str(total_ids)} },
+    { "$addToSet":{"groups": {'group_name': group_name, 'group_id':str(total_ids)}}},
     upsert=True)
     return str(total_ids)
 
