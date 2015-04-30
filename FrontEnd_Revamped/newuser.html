@@ -39,7 +39,11 @@
                         console.log(user);
                         user.diet_restrict = diet_restrict;
                         $.post('sendUserInfo', user, function(response){
+                            console.log("posted response is below:");
                             console.log(response);
+                            //after inputting dietary preferences, redirect to profile
+                            alert("about to redirect");
+                            window.location = '/userprofile?user_id='+user.user_id;
                         });
                     });
                 });
