@@ -85,6 +85,10 @@ $(document).ready(function(){
   });
   vars = getUrlVars(window.location.href);
   groupID= vars['group_id'];
+  
+  console.log("group id is: ")
+  console.log(groupID);
+
   $.getJSON('/groupinfo.json?group_id='+groupID, function(response) {
     console.log(response);
     $('.groupName').text(response.group_name);
