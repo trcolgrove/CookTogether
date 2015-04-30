@@ -27,8 +27,26 @@
 </head>
 
 <body id="page-top" class="index">
+    <div id="fb-root"></div>
+        <script>(function(d, s, id) { 
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=1401516633500673";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        
+        jQuery(document).on('ready', function(){
+            console.log("in script");
+            var url = window.location.href;
+            //var url= "https://www.reddit.com";
+            $('.fb-share-button').attr('data-href', url);
+        });
 
-    <!-- Navigation -->
+        </script>
+
+
+    <!-- Navigation -->  
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -50,9 +68,6 @@
                     </li>
                     <li class="page-scroll">
                         <a href="#portfolio">Profile</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">My Meals</a>
                     </li>
                     <li class="page-scroll">
                         <a href="mailto:aditi.ashok@tufts.edu">Contact</a>
@@ -77,14 +92,22 @@
 
             <div class="col-md-12">
                 <h2>Collaborators</h2>
+                <!-- <div class="fb-send" data-href="https://developers.facebook.com/docs/plugins/"></div> -->
+                <!-- <div class="fb-send" data-href=" "></div> -->
+                <div class ="row">
+                    <p> Add Collaborator: 
+                        <div class ="fb-share-button" data-type="button"></div>
+                    </p>
+                    
+                </div>
             </div>
+        
 
             <div class="col">
                 <div class="col-md-4">
                     <h2> Collaborator </h2>
                     <p id="current_usr"></p>
                     <ul class="list-group" id='userlist'></ul>
-
                 </div>
             </div>
 
@@ -141,7 +164,7 @@
                         <div class="footer-col col-md-4">
                         </div>
                         <div class="footer-col col-md-4">
-                            <h3> Back To Top </h3>
+                            
                         </div>
                     </div>
                 </div>
@@ -161,6 +184,7 @@
   <!-- jQuery -->
     <script src="/static/js/jquery.js"></script>
 
+  
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
 
