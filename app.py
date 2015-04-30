@@ -85,7 +85,7 @@ def user_info():
 
 def create_group():
     global total_ids
-    username = request.args.get('user_id')
+    user_id = request.args.get('user_id')
     total_ids += 1
     db["users"].update(
     { "user_id": user_id },
