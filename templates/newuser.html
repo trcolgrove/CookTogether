@@ -12,14 +12,14 @@
     <title>User Preferences </title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="/static/css/freelancer.css" rel="stylesheet">
     <link href="test.css" rel= "stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -28,7 +28,7 @@
         $(document).ready(function() {
             $('#next').click(function(){
                 var diet_restrict = [];
-                $.each($("input[name='pref']:checked"), function(){            
+                $.each($("input[name='pref']:checked"), function(){
                     diet_restrict.push($(this).val());
                 });
                 //load FB api
@@ -50,7 +50,7 @@
                 /* SEND ARRAY TO DATABASE */
 
 
-               
+
                 /* NEED TO PUT IN A REDIRECT INSTEAD OF ALERT HERE */
                 alert("My food preferences are: " + diet_restrict.join(", "));
 
@@ -107,68 +107,68 @@
     <div class="container">
         <h1> Welcome to CookTogether </h1>
         <h3> To complete your profile, tell us what kind of food you eat. </h3>
-        
+
         <form role="form">
             <div class = "row">
                     <div class="col-md-4">
                         <label class ="checkbox"><input type="checkbox" value="Low-Carb" name="pref">Low-Carb
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="High-Protein" name="pref">High-Protein
-                        </label> 
-                        <br/>    
+                        </label>
+                        <br/>
                         <label class ="checkbox"><input type="checkbox" value="Low-Fat" name="pref">Low-Fat
-                        </label> 
-                        <br/>    
+                        </label>
+                        <br/>
                         <label class ="checkbox"><input type="checkbox" value="Balanced" name="pref">Balanced
                         </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="High-Fiber" name="pref">High-Fiber
-                        </label> 
-                        <br/>    
+                        </label>
+                        <br/>
                         <label class ="checkbox"><input type="checkbox" value="Low-Sodium" name="pref">Low-Sodium
                         </label>
                     </div>
 
                     <div class="col-md-4">
                         <label class ="checkbox"><input type="checkbox" value="No-Sugar" name="pref">No-Sugar
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="Sugar-Conscious" name="pref">Sugar-Conscious
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="Vegetarian" name="pref"> Vegetarian
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="Vegan" name="pref">Vegan
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="Paleo" name="pref">Paleo
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="Gluten-Free" name="pref">Gluten-Free
-                        </label>                         
+                        </label>
                     </div>
 
                     <div class="col-md-4">
                         <label class ="checkbox"><input type="checkbox" value="Wheat-Free" name="pref">Wheat-Free
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="Dairy" name="pref">Dairy
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="Egg-Free" name="pref">Egg-Free
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="Soy-Free" name="pref">Soy-Free
                         </label>
-                        <br/> 
+                        <br/>
                         <label class ="checkbox"><input type="checkbox" value="No-Tree-Nuts" name="pref">No-Tree-Nuts
-                        </label> 
+                        </label>
                         <br/>
                         <label class ="checkbox"><input type="checkbox" value="Low-Potassium" name="pref">Low-Potassium
-                        </label> 
-                    </div>         
+                        </label>
+                    </div>
         </div>
 
         <div class ="row">
@@ -206,24 +206,24 @@
                     </div>
                 </div>
             </div>
-        </footer>  
+        </footer>
  <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="/static/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
+    <script src="/static/js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="/static/js/jqBootstrapValidation.js"></script>
+    <script src="/static/js/contact_me.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/freelancer.js"></script>
+    <script src="/static/js/freelancer.js"></script>
 
      <script>
   // This is called with the results from from FB.getLoginStatus().
@@ -237,7 +237,7 @@
         if (response.status === 'connected') {
           // Logged into your app and Facebook.
           testAPI();
-        } 
+        }
     else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
      // document.getElementById('status').innerHTML = 'Please log ' +
