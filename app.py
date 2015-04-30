@@ -1,5 +1,6 @@
 from flask import *
 
+
 #!/usr/bin/python
 
 # Copyright (c) 2015 Thomas Colgrove
@@ -11,6 +12,7 @@ __author__ = 'mongolab'
 import sys
 import pymongo
 import datetime
+import re
 
 from bson import Binary, Code
 from bson import json_util
@@ -92,14 +94,36 @@ def create_group():
     group_name = request.args.get('group_name')
 
     group_id = datetime.datetime.now().isoformat()
+    group_id = re.sub(r'\W+', '', group_id)
 
     new_group = {'group_name': group_name, 'group_id':str(group_id)}
     db["users"].update(
     { "user_id": user_id },
     { "$addToSet":{"groups": {'group_name': group_name, 'group_id':str(group_id)}}},
     upsert=True)
-    db["groups"].insert( {'group_id' : str(group_id),'group_name' : group_name, 'user_id': [user_id] })
+    db["groups"].insert( {'group_id' : str(group_id),'group_name' : group_name, 'user_ids': [user_id] })
     return str(group_id)
+
+@app.route("/addUserToGroup", methods=['POST'])
+
+def addUser():
+    user_id = request.form.get('user_id')
+    group_id = request.form.get('group_id')
+
+    group_name = db["groups"].find_one({'group_id':group_id})['group_name']
+
+    db["groups"].update(
+    { "group_id": group_id },
+    { "$addToSet":{"user_ids": user_id }},
+    upsert=True)
+
+    db["users"].update(
+    { "user_id": user_id },
+    { "$addToSet":{"groups": {'group_name': group_name, 'group_id':str(group_id)}}},
+    upsert=True)
+    return "success"
+
+
 
 @app.route("/groupinfo.json")
 

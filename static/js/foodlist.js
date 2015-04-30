@@ -55,6 +55,7 @@ $(document).ready(function(){
 
   group_id = args['group_id'];
 
+
   pollDB();
 
   $('.inputbox').change( function() {
@@ -83,15 +84,15 @@ $(document).ready(function(){
     list_num++;
     clearInputs();
   });
-  vars = getUrlVars(window.location.href);
+
+  vars = getUrlVars();
   groupID= vars['group_id'];
-  
+
   console.log("group id is: ")
   console.log(groupID);
 
   $.getJSON('/groupinfo.json?group_id='+groupID, function(response) {
-    console.log(response);
-    
+
     $('.groupName').text(response.group_name);
     //var collaborators = response.user_ids
     /*
@@ -101,7 +102,7 @@ $(document).ready(function(){
     }*/
     
   });
-  
+
   setInterval(pollDB, 10000);
 });
 
