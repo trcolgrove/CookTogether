@@ -31,7 +31,7 @@
                 $.each($("input[name='pref']:checked"), function(){
                     diet_restrict.push($(this).val());
                 });
-                //load FB api
+
                 FB.api('/me', function (response){
                     //console.log("/me");
                     current_user = response.id;
@@ -42,7 +42,7 @@
                         console.log("user:");
                         console.log(user);
                         console.log("diet:");
-                        user.diet_restrict = JSON.stringify(diet_restrict);
+                        user.diet_restrict = diet_restrict
                         console.log(user.diet_restrict);
 
                         $.post('/sendUserInfo', user, function(response){
@@ -50,7 +50,7 @@
                             console.log(response);
                             //after inputting dietary preferences, redirect to profile
                            // alert("about to redirect");
-                            window.location = '/userprofile?user_id='+user.user_id;
+                            //window.location = '/userprofile?user_id='+user.user_id;
                         });
                     });
                 });
