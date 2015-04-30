@@ -190,6 +190,13 @@
           window.location = "/login"
         }
     }
+    
+    $('#create_meal').on('click', function (e) {
+      $.getJSON('/createGroup?user_id=' + user.user_id, function(data){
+        groupID = data;
+        window.location = '/plan?group_id='+data;
+      });
+    });
     </script>
     <script src="/static/js/fbLogin.js"></script>
 

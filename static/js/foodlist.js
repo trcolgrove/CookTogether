@@ -20,6 +20,46 @@ function getUrlVars()
     return vars;
 }
 
+function statusChangeCallback(response) {
+  if (response.status === 'connected') {
+      FB.api('/me', function(response) {
+        username = response.name;
+        id = response.id;
+        console.log(response);
+        FB.api('/me/permissions', function(response){
+          console.log("permissions");
+          console.log(response);
+        });
+        FB.api('/me/friends', function (response) {
+          if (response && !response.error) {
+            friends = response;
+            console.log("friends got api response");
+            console.log(friends);
+          }
+          else {
+            friends = {};
+            console.log(response.error);
+            console.log("friends got an empty JSON");
+          }
+          user = {
+            'username' : username,
+            'user_id' : id,
+            'friends' : friends,
+            'groups' : [],
+            'diet_restrict' : []
+          };
+          console.log(username);
+          $('#current_usr').append(username);
+          $.getJSON('/userinfo.json?user_id='+user.user_id, function(data){
+            console.log("GET");
+            console.log(data);
+
+
+          });
+        });
+      });
+    }
+}
 $(document).ready(function(){
 
   var args = getUrlVars();
@@ -81,12 +121,11 @@ function pollDB(){
 
 function clearInputs(){
   $('#ingr_input').val('');
-  $('#username_input').val('');
   $('#amount_input').val('');
 }
 
 function listIngredient(){
-  $('#userlist').prepend('<li class="list-group-item" id="foodlistitem">' + "placeholder" + '</li>');
+  $('#userlist').prepend('<li class="list-group-item" id="foodlistitem">' + username + '</li>');
   $('#ingredientlist').prepend('<li class=list-group-item id="foodlistitem">' +  ingredient + '</li>');
   $('#amountlist').prepend('<li class="list-group-item" id="foodlistitem">' +  amount + '</li>');
 }
