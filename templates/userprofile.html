@@ -81,13 +81,13 @@
                 <div class="intro-text">
                     <span class="name" style="text-align:center;font-size:55px;">
                         user.name
-                        <!-- check this, is it how it works? 
+                        <!-- check this, is it how it works?
                         <script>
                            user.username;
                         </script>-->
                     </span>
                     <p>  Location: </p> <!--GEOLOCATION -->
-                    <p> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
+                    <p id="profile_pref_list"> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
                     <br>
                     <br>
                     <a href="#"class="btn btn-primary btn-lg" id="create_meal"><span class="glyphicon glyphicon-plus"></span> Create New Meal </a>
@@ -97,23 +97,20 @@
 
         <div class="row">
             <div class="col">
-                <div class="col-md-4">
+                <div id = "profile_friend_list" class="col-md-4">
                     <h2> Friends List </h2>
-                    <li> Friend1 </li>
                 </div>
             </div>
 
             <div class="col">
-                <div class="col-md-4">
+                <div id="group_list" class="col-md-4">
                     <h2> Meals </h2>
-                    <li> Meal1 </li>
                 </div>
             </div>
 
             <div class="col">
                 <div class="col-md-4">
                     <h2> Past Recipes </h2>
-                    <li> Recipe 1 </li>
                 </div>
             </div>
 
@@ -168,44 +165,31 @@
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/freelancer.js"></script>
     <script>
-  // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
-      console.log('statusChangeCallback');
-      console.log(response);
-      // The response object is returned with a status field that lets the
-      // app know the current login status of the person.
-      // Full docs on the response object can be found in the documentation
-      // for FB.getLoginStatus().
         if (response.status === 'connected') {
-          // Logged into your app and Facebook.
-          testAPI();
+          FB.api('/me', function (response){
+          current_user = response.id;
+
+          $.getJSON('/userinfo.json?user_id='+current_user, function(data){
+            user = data;
+            for(var i = 0 ; i < user.diet_restrict.length; i++){
+              $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
+            }
+            for(var i = 0 ; i < user.groups.length; i++){
+              $('#group_list').append('<li class="list-group-item" id="group_list_item">' + user.groups[i] + '</li>');
+            }
+            for(var i = 0 ; i < user.friends.data.length; i++){
+              $('#profile_friend_list').append('<li class="list-group-item" id="group_list_item">' + user.friends.data[i].name + '</li>');
+            }
+            });
+          });
         } else if (response.status === 'not_authorized') {
-          // The person is logged into Facebook, but not your app.
-          //document.getElementById('status').innerHTML = 'Please log ' +
-          //'in with Facebook.';
+          window.location = "/login"
         } else {
-          // The person is not logged into Facebook, so we're not sure if
-          // they are logged into this app or not.
-          //document.getElementById('status').innerHTML = 'Please log ' +
-          //    'in with Facebook.';
+          window.location = "/login"
         }
-  }
-          // /getUserInfo?username
-        //jquery ajax request
-        //testAPI();
-    /*else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'in with Facebook.';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'in with Facebook.';
     }
-    */
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
+
   // code below.
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
@@ -216,23 +200,10 @@
   window.fbAsyncInit = function() {
   FB.init({
     appId      : '1401516633500673',
-    cookie     : true,  // enable cookies to allow the server to access
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.2' // use version 2.2
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v2.2'
   });
-
-  // Now that we've initialized the JavaScript SDK, we call
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
 
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
@@ -249,35 +220,20 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
+
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      //document.getElementById('status').innerHTML =
-      // 'Logged in as ' + response.name;
     });
   }
 
+
   $('#create_meal').on('click', function (e) {
-    alert("create meal clicked");
-    //get request for groupID
-    FB.api('/me', function (response){
-    //console.log("/me");
-    current_user = response.id;
-    console.log("current user");
-    console.log(current_user);
-    $.getJSON('/userinfo.json?user_id='+current_user, function(data){
-      user = data;
-      $.getJSON('/createGroup?user_id=' + user.user_id, function(data){
-        console.log(data);
-        groupID = data;
-        window.location = '/plan?group_id='+data;
-      });
+    $.getJSON('/createGroup?user_id=' + user.user_id, function(data){
+      groupID = data;
+      window.location = '/plan?group_id='+data;
     });
   });
-});  
 </script>
 
 </body>

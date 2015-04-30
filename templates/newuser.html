@@ -33,37 +33,38 @@
                 });
 
                 FB.api('/me', function (response){
-                    //console.log("/me");
                     current_user = response.id;
-                    console.log("current user");
-                    console.log(current_user);
                      $.getJSON('/userinfo.json?user_id='+current_user, function(data){
                         user = data;
-                        console.log("user:");
-                        console.log(user);
-                        console.log("diet:");
                         user.diet_restrict = diet_restrict
-                        console.log(user.diet_restrict);
-
-                        $.post('/sendUserInfo', user, function(response){
-                            console.log("posted response is below:");
-                            console.log(response);
-                            //after inputting dietary preferences, redirect to profile
-                           // alert("about to redirect");
-                            //window.location = '/userprofile?user_id='+user.user_id;
+                        $.ajax({
+                          type: "POST",
+                          url: "/sendUserInfo",
+                          // The key needs to match your method's input parameter (case-sensitive).
+                          data: JSON.stringify(user),
+                          contentType: "application/json; charset=utf-8",
+                          dataType: "json",
+                          success: function(data){
+                            console.log("manatee porn")
+                            window.location= '/userprofile?user_id=' + current_user;
+                          },
+                          failure: function(errMsg) { alert(errMsg);}
                         });
                     });
                 });
-                /* SEND ARRAY TO DATABASE */
-
-
-
-                /* NEED TO PUT IN A REDIRECT INSTEAD OF ALERT HERE */
-                //alert("My food preferences are: " + diet_restrict.join(", "));
-
             });
+
         });
-</script>
+    </script>
+    <style>
+    #katesABusta{ text-align: left; padding-left: 15%;}
+
+    @media (max-width: 992px){
+      #katesABusta{ text-align: left; margin: auto;}
+      #katesABusta .checkbox{ padding-left: 30%;}
+      .fullWidthVis{ display:none;}
+    }
+    </style>
 
 </head>
 
@@ -117,62 +118,62 @@
 
         <form role="form">
             <div class = "row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="katesABusta">
                         <label class ="checkbox"><input type="checkbox" value="low-carb" name="pref">Low-Carb
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="high-protein" name="pref">High-Protein
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="low-fat" name="pref">Low-Fat
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="balanced" name="pref">Balanced
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="high-fiber" name="pref">High-Fiber
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="low-sodium" name="pref">Low-Sodium
                         </label>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="katesABusta">
                         <label class ="checkbox"><input type="checkbox" value="no-sugar" name="pref">No-Sugar
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="sugar-conscious" name="pref">Sugar-Conscious
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="vegetarian" name="pref"> Vegetarian
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="vegan" name="pref">Vegan
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="paleo" name="pref">Paleo
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="gluten-free" name="pref">Gluten-Free
                         </label>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="katesABusta">
                         <label class ="checkbox"><input type="checkbox" value="wheat-free" name="pref">Wheat-Free
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="dairy-free" name="pref">Dairy
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="egg-free" name="pref">Egg-Free
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="soy-free" name="pref">Soy-Free
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="tree-nut-free" name="pref">No-Tree-Nuts
                         </label>
-                        <br/>
+                        <span class="fullWidthVis"><br/></span>
                         <label class ="checkbox"><input type="checkbox" value="low-potassium" name="pref">Low-Potassium
                         </label>
                     </div>
@@ -182,7 +183,7 @@
             <div class ="col-md-">
                 <br>
                 <br>
-                <a href="#"class="btn btn-primary btn-lg" id="next">Next </a>
+                <a class="btn btn-primary btn-lg" id="next">Next </a>
             </div>
 
         </div>
@@ -237,23 +238,13 @@
     function statusChangeCallback(response) {
       console.log('statusChangeCallback');
       console.log(response);
-      // The response object is returned with a status field that lets the
-      // app know the current login status of the person.
-      // Full docs on the response object can be found in the documentation
-      // for FB.getLoginStatus().
+
         if (response.status === 'connected') {
-          // Logged into your app and Facebook.
           testAPI();
         }
     else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-     // document.getElementById('status').innerHTML = 'Please log ' +
-       // 'in with Facebook.';
+
     } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      //document.getElementById('status').innerHTML = 'Please log ' +
-        //'in with Facebook.';
     }
 }
   // This function is called when someone finishes with the Login
@@ -304,11 +295,7 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-     // document.getElementById('status').innerHTML =
-       // 'Logged in as ' + response.name;
     });
   }
 

@@ -63,7 +63,6 @@ $(document).ready(function(){
 
 function pollDB(){
   var groupURL = "/foodlist?group_id=" + group_id;
-  console.log("group_id:", group_id);
   $.getJSON(groupURL, function(data) {
       var init_meal = data;
       for(var i = list_num; i < init_meal.length; i++){
@@ -73,7 +72,6 @@ function pollDB(){
         ingredients.push(ingredient);
         listIngredient();
    }
-
       list_num = init_meal.length;
       console.log(list_num);
   });
