@@ -1,5 +1,6 @@
 from flask import *
 
+
 #!/usr/bin/python
 
 # Copyright (c) 2015 Thomas Colgrove
@@ -11,6 +12,7 @@ __author__ = 'mongolab'
 import sys
 import pymongo
 import datetime
+import re
 
 from bson import Binary, Code
 from bson import json_util
@@ -92,6 +94,7 @@ def create_group():
     group_name = request.args.get('group_name')
 
     group_id = datetime.datetime.now().isoformat()
+    group_id = re.sub(r'\W+', '', group_id)
 
     new_group = {'group_name': group_name, 'group_id':str(group_id)}
     db["users"].update(
