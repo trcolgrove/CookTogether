@@ -149,16 +149,8 @@
 
     <!-- jQuery -->
     <script src="/static/js/jquery.js"></script>
-    <script>
-    $('#create_meal').on('click', function (e) {
-          alert("create meal clicked");
-          //get request for groupID
-          $.getJSON('/createGroup?' + user.username, function(data){
-            console.log(data);
-            groupID = data;
-            buildUrl('https://cooktogether.herokuapp.com', data);
-          });
-      });*/
+    <script type = "text/javascript">
+ //extra script
       </script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -189,13 +181,13 @@
           testAPI();
         } else if (response.status === 'not_authorized') {
           // The person is logged into Facebook, but not your app.
-          document.getElementById('status').innerHTML = 'Please log ' +
-          'in with Facebook.';
+          //document.getElementById('status').innerHTML = 'Please log ' +
+          //'in with Facebook.';
         } else {
           // The person is not logged into Facebook, so we're not sure if
           // they are logged into this app or not.
-          document.getElementById('status').innerHTML = 'Please log ' +
-              'in with Facebook.';
+          //document.getElementById('status').innerHTML = 'Please log ' +
+          //    'in with Facebook.';
         }
   }
           // /getUserInfo?username
@@ -268,11 +260,24 @@
     });
   }
 
- var buildUrl = function(base, qString) {
-    var sep = (base.indexOf('?') > -1) ? '&' : '?';
-    return base + sep + '=' + qString;
-  }
-
+  $('#create_meal').on('click', function (e) {
+    alert("create meal clicked");
+    //get request for groupID
+    FB.api('/me', function (response){
+    //console.log("/me");
+    current_user = response.id;
+    console.log("current user");
+    console.log(current_user);
+    $.getJSON('/userinfo.json?user_id='+current_user, function(data){
+      user = data;
+      $.getJSON('/createGroup?user_id=' + user.user_id, function(data){
+        console.log(data);
+        groupID = data;
+        window.location = '/plan?group_id='+data;
+      });
+    });
+  });
+});  
 </script>
 
 </body>
