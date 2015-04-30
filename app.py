@@ -91,12 +91,21 @@ def create_group():
     group_name = request.args.get('group_name')
 
     total_ids += 1
+    new_group = {'group_name': group_name, 'group_id':str(total_ids)}
     db["users"].update(
     { "user_id": user_id },
     { "$addToSet":{"groups": {'group_name': group_name, 'group_id':str(total_ids)}}},
     upsert=True)
+    db["groups"].insert( {'group_id' : group_id,'group_name' : group_name, 'users': [users])
     return str(total_ids)
 
+app.route("/groupinfo.json")
+
+def get_group_info():
+    groups = db['groups']
+    group_id = request.args.get("group_id")
+    cursor = groups.find_one("group_id")
+    return dumps(group)sssssss
 
 # API Call to handle changes in group foodlist/mealplanner data
 # Methods: 'GET', 'POST'
@@ -143,6 +152,13 @@ def sendUser():
     users.update({'username': username},{'username': username, 'diet_restrict': diet_restrict, 'groups': groups, 'friends': friends, 'user_id': user_id },  upsert=True)
     cursor = users.find_one({'username':username})
     return dumps(cursor)
+
+@app.route("/getGroupID" , methods=['GET']){
+    users = db[users]
+
+}
+
+
 
 @app.route("/newuser")
 
