@@ -174,17 +174,19 @@
                 $.post('/sendUserInfo', user, function(response) {
                   console.log(response);
                 });
-                //REDIRECT TO PREFERENCES
+                //REDIRECT TO NEW USER PREFERENCES
+                window.location = '/newuser?user_id='+user.user_id;
               }
               else {
                 //REDIRECT TO PROFILE
+               // window.location = '/userprofile?user_id='+user.user_id;
                 console.log("in else");
                 user.groups = data['groups'];
                 user.diet_restrict = data['diet_restrict'];
                 console.log (user.groups);
                 console.log(user.diet_restrict);
               }
-              //.onload load those things
+              //load stuff onto page here
             });
           });   
         });
