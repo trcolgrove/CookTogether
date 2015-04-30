@@ -85,9 +85,9 @@ $(document).ready(function(){
   });
   vars = getUrlVars(window.location.href);
   groupID= vars['group_id'];
-  $.getJSON('/groupinfo.json', groupID, function (response) {
+  $.getJSON('/groupinfo.json?group_id='+groupID, function(response) {
     console.log(response);
-    $('.groupName').text(group_name);
+    $('.groupName').text(response.group_name);
   });
   
   setInterval(pollDB, 10000);
