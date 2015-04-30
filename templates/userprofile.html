@@ -58,7 +58,7 @@
                     <li class = "page-scroll">
                         <br>
                      <div id="status"></div>
-                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="large", auto_logout_link="true">
+                            <fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();" size="large", auto_logout_link="true">
                             </fb:login-button>
                         </li>
                 </ul>
@@ -212,8 +212,6 @@
         'in with Facebook.';
     }
     */
-  }
-}
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
@@ -261,14 +259,14 @@
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-  /*function testAPI() {
+  function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Logged in as ' + response.name;
     });
-  }*/
+  }
 
  var buildUrl = function(base, qString) {
     var sep = (base.indexOf('?') > -1) ? '&' : '?';

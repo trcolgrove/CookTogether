@@ -124,19 +124,22 @@ def return_foodlist():
 
 def sendUser():
     users = db['users']
-    print request.form
     user_id = request.form.get('user_id')
     username = request.form.get('username')
     diet_restrict = request.form.get('diet_restrict')
     groups = request.form.get('groups')
     friends = request.form.get('friends')
 
-
     #if user_id == None or username == None or diet_restrict == None or groups == None or friends == None:
     #    return "{error : whoops!, something is wrong with your data!}"
     users.update({'username': username},{'username': username, 'diet_restrict': diet_restrict, 'groups': groups, 'friends': friends, 'user_id': user_id },  upsert=True)
     cursor = users.find_one({'username':username})
     return dumps(cursor)
+
+@app.route("/newuser")
+
+def newUserPage():
+    return render_template('newuser.html')
 
 @app.route("/fblogin", methods =['GET'])
 
