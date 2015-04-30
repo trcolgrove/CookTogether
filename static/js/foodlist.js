@@ -95,14 +95,14 @@ $(document).ready(function(){
 
     $('.groupName').text(response.group_name);
     var collaborators = response.user_ids;
-    console.log("OCEAN MAN TAKE ME BY THE HAND LEAD ME TO THE LAAAAAND");
-    console.log(collaborators);
-    
+
     for(var i = 0; i < collaborators.length; i++){
-      var toInsert =  '<div class="col-sm-6 col-md-2"> <img src= "https://graph.facebook.com/' + collaborators[i] +'/picture?width=100&height=1000" class="img-circle" alt="Generic placeholder thumbnail"> </a></div>';
+
+      var toInsert =  '<div class="col-md-12"> <img src= "https://graph.facebook.com/' + collaborators[i] +'/picture?width=100&height=100" class="img-circle" alt="Generic placeholder thumbnail"> </a></div>';
+      console.log(toInsert)
       $('#group_pictures').append(toInsert);
     }
-    
+
   });
 
   setInterval(pollDB, 10000);
