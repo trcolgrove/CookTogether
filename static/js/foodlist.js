@@ -94,7 +94,10 @@ $(document).ready(function(){
     list_num++;
     clearInputs();
   });
-//$.getJSON('')
+  console.log(window.location.href['group_id']);
+//$.getJSON('/groupinfo.json', window.location.href['group_id'], function (response) {
+
+//})
 //group_name = 
   $('.groupName').text(group_name);
 
