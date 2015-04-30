@@ -98,25 +98,17 @@
 
         <div class="row">
             <div class="col">
-                <div id = "profile_friend_list" class="col-md-4">
+                <div id = "profile_friend_list" class="col-md-6">
                     <h2> Friends List </h2>
                 </div>
             </div>
 
             <div class="col">
-                <div id="group_list" class="col-md-4">
+                <div id="group_list" class="col-md-6">
                     <h2> Meals </h2>
                 </div>
             </div>
-
-            <div class="col">
-                <div class="col-md-4">
-                    <h2> Past Recipes </h2>
-                </div>
-            </div>
-
         </div>
-
     </div>
 
 </header>
@@ -126,9 +118,6 @@
                 <div class="container">
                     <div class="row">
                         <div class="footer-col col-md-4">
-                        </div>
-                        <div class="footer-col col-md-4">
-                            <h3> Back To Top </h3>
                         </div>
                     </div>
                 </div>
@@ -165,6 +154,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/freelancer.js"></script>
+    <script src="/static/js/fbLogin.js"></script>
     <script>
     function statusChangeCallback(response) {
         if (response.status === 'connected') {
@@ -178,7 +168,7 @@
               $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
             }
             for(var i = 0 ; i < user.groups.length; i++){
-              $('#group_list').append('<li class="list-group-item" id="group_list_item">' + user.groups[i].group_name + '</li>');
+              $('#group_list').append('<li class="list-group-item" id="group_list_item"> <a href=/plan?group_id=2>'+user.groups[i].group_name+'</a> </li>');
             }
             for(var i = 0 ; i < user.friends.data.length; i++){
               $('#profile_friend_list').append('<li class="list-group-item" id="group_list_item">' + user.friends.data[i].name + '</li>');
@@ -198,11 +188,11 @@
       console.log(url);
       $.getJSON(url , function(data){
         groupID = data;
-        window.location = '/plan?group_id='+data;
+        plan_page = '/plan?group_id='+groupID;
+        window.location = plan_page;
       });
     });
     </script>
-    <script src="/static/js/fbLogin.js"></script>
 
 </body>
 
