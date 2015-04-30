@@ -25,21 +25,14 @@ function statusChangeCallback(response) {
       FB.api('/me', function(response) {
         username = response.name;
         id = response.id;
-        console.log(response);
         FB.api('/me/permissions', function(response){
-          console.log("permissions");
-          console.log(response);
         });
         FB.api('/me/friends', function (response) {
           if (response && !response.error) {
             friends = response;
-            console.log("friends got api response");
-            console.log(friends);
           }
           else {
             friends = {};
-            console.log(response.error);
-            console.log("friends got an empty JSON");
           }
           user = {
             'username' : username,
@@ -48,13 +41,9 @@ function statusChangeCallback(response) {
             'groups' : [],
             'diet_restrict' : []
           };
-          console.log(username);
           $('#current_usr').append(username);
           $.getJSON('/userinfo.json?user_id='+user.user_id, function(data){
-            console.log("GET");
             console.log(data);
-
-
           });
         });
       });
@@ -94,10 +83,17 @@ $(document).ready(function(){
     list_num++;
     clearInputs();
   });
-//$.getJSON('')
-//group_name = 
-  $('.groupName').text(group_name);
+  vars = getUrlVars(window.location.href);
+  groupID= vars['group_id'];
+  
+  console.log("group id is: ")
+  console.log(groupID);
 
+  $.getJSON('/groupinfo.json?group_id='+groupID, function(response) {
+    console.log(response);
+    $('.groupName').text(response.group_name);
+  });
+  
   setInterval(pollDB, 10000);
 });
 
@@ -114,7 +110,6 @@ function pollDB(){
         listIngredient();
    }
       list_num = init_meal.length;
-      console.log(list_num);
   });
 
 }
@@ -145,7 +140,6 @@ function getRecipes(){
       dataType: "jsonp",
       success: function(response){
         var results = response['hits'];
-        //console.log(results);
         for( var i = 0; i < results.length; i++){
           var recipe = results[i].recipe;
           var ingr = recipe.ingredients;
