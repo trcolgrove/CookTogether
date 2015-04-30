@@ -74,17 +74,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img class="img-responsive" src="https://graph.facebook.com/tcolgrove/picture?type=large" style="height:60%;width:60%;" alt="">
+                <img class="user_prof_picture" src=  style="height:60%;width:60%;" alt="Profile Picture">
             </div>
 
             <div class="col-md-8">
                 <div class="intro-text">
                     <span id="user_prof_header" class="name" style="text-align:center;font-size:55px;">
-
-                        <!-- check this, is it how it works?
-                        <script>
-                           user.username;
-                        </script>-->
                     </span>
                     <p>  Location: </p> <!--GEOLOCATION -->
                     <p id="profile_pref_list"> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
@@ -99,25 +94,17 @@
 
         <div class="row">
             <div class="col">
-                <div id = "profile_friend_list" class="col-md-4">
+                <div id = "profile_friend_list" class="col-md-6">
                     <h2> Friends List </h2>
                 </div>
             </div>
 
             <div class="col">
-                <div id="group_list" class="col-md-4">
+                <div id="group_list" class="col-md-6">
                     <h2> Meals </h2>
                 </div>
             </div>
-
-            <div class="col">
-                <div class="col-md-4">
-                    <h2> Past Recipes </h2>
-                </div>
-            </div>
-
         </div>
-
     </div>
 
 </header>
@@ -127,9 +114,6 @@
                 <div class="container">
                     <div class="row">
                         <div class="footer-col col-md-4">
-                        </div>
-                        <div class="footer-col col-md-4">
-                            <h3> Back To Top </h3>
                         </div>
                     </div>
                 </div>
@@ -166,6 +150,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/freelancer.js"></script>
+    <script src="/static/js/fbLogin.js"></script>
     <script>
     function statusChangeCallback(response) {
         if (response.status === 'connected') {
@@ -176,17 +161,27 @@
             user = data;
             $('#user_prof_header').text(response.name)
             for(var i = 0 ; i < user.diet_restrict.length; i++){
-              $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
+                if (i == user.diet_restrict.length - 1) {
+                    $('#profile_pref_list').append(user.diet_restrict[i]);
+                }
+                else {
+                    $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
+                }
             }
             for(var i = 0 ; i < user.groups.length; i++){
-              $('#group_list').append('<li class="list-group-item" id="group_list_item">' + user.groups[i].group_name + '</li>');
+              $('#group_list').append('<li class="list-group-item" id="group_list_item"> <a href=/plan?group_id=2>'+user.groups[i].group_name+'</a> </li>');
             }
             for(var i = 0 ; i < user.friends.data.length; i++){
               $('#profile_friend_list').append('<li class="list-group-item" id="group_list_item">' + user.friends.data[i].name + '</li>');
             }
+            FB.api ('/me?fields=picture', function(response) {
+                console.log(response.picture);
+
+                $('#user_prof_picture').attr('src', response.picture.data.url);
             });
-          });
-        } else if (response.status === 'not_authorized') {
+          })
+        });
+    } else if (response.status === 'not_authorized') {
           window.location = "/login"
         } else {
           window.location = "/login"
@@ -199,11 +194,11 @@
       console.log(url);
       $.getJSON(url , function(data){
         groupID = data;
-        window.location = '/plan?group_id='+data;
+        plan_page = '/plan?group_id='+groupID;
+        window.location = plan_page;
       });
     });
     </script>
-    <script src="/static/js/fbLogin.js"></script>
 
 </body>
 
