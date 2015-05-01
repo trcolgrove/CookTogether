@@ -88,7 +88,6 @@ def user_info():
 
 def create_group():
     global total_ids
-    print request.args
 
     user_id = request.args.get('user_id')
     group_name = request.args.get('group_name')

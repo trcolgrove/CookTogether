@@ -2,11 +2,11 @@ var username = '';
 var ingredient = '';
 var amount = '';
 var list_num = 0;
-var group_name = ""
-var collaborators = ""
+var group_name = "";
+var collaborators = "";
 var ingredients = [];
 var group_id = -1;
-
+var user;
 function getUrlVars()
 {
     var vars = [], hash;
@@ -34,16 +34,11 @@ function statusChangeCallback(response) {
           else {
             friends = {};
           }
-          user = {
-            'username' : username,
-            'user_id' : id,
-            'friends' : friends,
-            'groups' : [],
-            'diet_restrict' : []
-          };
+
           $('#current_usr').append(username);
-          $.getJSON('/userinfo.json?user_id='+user.user_id, function(data){
-            console.log(data);
+          $.getJSON('/userinfo.json?user_id='+id, function(data){
+            user = data;
+            console.log(user);
           });
         });
       });
@@ -152,6 +147,9 @@ function getRecipes(){
       url += "," + ingredients[i];
     }
     url += '&app_id=a9e44233&app_key=4e60143490cec408c5aaf35215ab8ef6'
+
+    //url += user.diet_restrict[0];
+
     $("#recipes").empty();
     $.ajax({
       url: url,

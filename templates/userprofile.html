@@ -22,7 +22,7 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    
+
     <!--GEOLOCATION -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript"
@@ -88,8 +88,8 @@
                     <span id="user_prof_header" class="name" style="text-align:center;text-indent:8%;cfont-size:55px;">
                     </span>
 
-                    <p class="text-left" style="text-align:center" id="location">  Location: </p> <!--GEOLOCATION -->
-                    <p class="text-left" style="text-align:center" id="profile_pref_list"> Preferences: </p> <!-- PULL FROM PREFERENCES HERE -->
+                    <p class="text-left" style="text-align:center" id="location">  Location- </p> <!--GEOLOCATION -->
+                    <p class="text-left" style="text-align:center" id="profile_pref_list"> Preferences- </p> <!-- PULL FROM PREFERENCES HERE -->
                     <br>
                     <br>
 
@@ -159,7 +159,7 @@
 
               //I'm not doing anything else, so just leave
               if(!navigator.geolocation) return;
-              
+
               navigator.geolocation.getCurrentPosition(function(pos) {
                 geocoder = new google.maps.Geocoder();
                 var latlng = new google.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
@@ -179,9 +179,9 @@
                     if(city != '' && state != '') {
                       $("#location").append(city+", "+state);
                     }
-                  } 
+                  }
                 });
-              
+
               });
 
         })
@@ -223,8 +223,7 @@
               $('#profile_friend_list').append('<li class="list-group-item" id="group_list_item">' + user.friends.data[i].name + '</li>');
             }
             for(var i = 0 ; i < user.groups.length; i++){
-            $('#group_list').append('<li class="list-group-item" id="group_list_item">' + '<a href = "/plan?group_id='+user.groups[i].group_id+'">'+user.groups[i].group_name+'</a></li>');
-            console.log(user.groups[i].group_id);
+              $('#group_list').append('<li class="list-group-item" id="group_list_item">' + '<a href = "/plan?group_id='+user.groups[i].group_id+'">'+user.groups[i].group_name+'</a></li>');
             }
             FB.api ('/me?fields=picture.height(300).width(300)', function(response) {
                 console.log(response.picture);
@@ -242,8 +241,8 @@
     $('#create_meal').on('click', function (e) {
       var input = $('#group-name-input').val();
       var url = '/createGroup?user_id=' + String(user.user_id) + '&group_name=' + input;
-      console.log(url);
-      $.getJSON(url , function(data){
+
+      $.get(url , function(data){
         groupID = data;
         plan_page = '/plan?group_id='+groupID;
         window.location = plan_page;
