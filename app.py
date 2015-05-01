@@ -106,7 +106,7 @@ def create_group():
 @app.route("/addfriends", methods=['GET'])
 
 def add_friend():
-    return render_template('addFriends.html')
+    return render_template('addfriends.html')
 
 @app.route("/addUserToGroup", methods=['POST'])
 
