@@ -98,7 +98,7 @@ $(document).ready(function(){
 
     for(var i = 0; i < collaborators.length; i++){
 
-      var toInsert =  '<div class="col-md-12"> <img src= "https://graph.facebook.com/' + collaborators[i] +'/picture?width=100&height=100" class="img-circle" alt="Generic placeholder thumbnail"> </a></div>';
+      var toInsert =  '<img id="usr_img" src="https://graph.facebook.com/' + collaborators[i] +'/picture?width=75&height=75" class="img-circle" alt="Generic placeholder thumbnail">';
       console.log(toInsert)
       $('#group_pictures').append(toInsert);
     }

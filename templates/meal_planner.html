@@ -80,36 +80,63 @@
         <!-- /.container-fluid -->
     </nav>
 
+    <style>
+    .img-circle{
+      display: inline-block;
+      padding: 1em;
+    }
+    #lowPadding{
+      padding: 0;
+      float: center;
+      text-align: center;
+    }
+    #group_pictures h2{
+      text-align: center;
+    }
+    #forcePadding{
+      padding-top: 7em;
+      padding-bottom: 1em;
+    }
+    #CollabHeader{
+      text-align: center;
+      padding-left: 1em;
+      padding-right: 1em;
+      display: inline;
+    }
+    #usr_img{
+      float: center;
+    }
+    .fb-share-button{
+      padding: .5em;
+    }
+    </style>
 
   <header>
-        <div class="container">
+        <div class="container" id="forcePadding">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-12" id="lowPadding">
                     <div class="intro-text">
                         <h1 style="font-size:65px;"> <span class="groupName"></span> </h1>
                     </div>
                 </div>
+          </div>
+
+
+            <!-- <div id="group_pictures" class="col-md-12"> -->
+            <div class="row" id="group_pictures">
+              <span id="group_pictures">
+                <h2 id="CollabHeader">Chefs</h2>
+                <img id="usr_img" src="https://graph.facebook.com/arthur.berman.10/picture?width=75&height=75" class="img-circle" alt="Generic placeholder thumbnail">
+              </span>
             </div>
-
-            <div id="group_pictures" class="col-md-12">
-                <h2>Collaborators</h2>
-                <!-- <div class="fb-send" data-href="https://developers.facebook.com/docs/plugins/"></div> -->
-                <!-- <div class="fb-send" data-href=" "></div> -->
-            </div>
+            <div class ="fb-share-button" data-type="button"></div>
 
 
-
-                <div class ="row">
-                    <p> Add Collaborator:
-                        <div class ="fb-share-button" data-type="button"></div>
-                    </p>
-
-                </div>
             </div>
 
 
             <div class="col">
-                <div class="col-md-4">
+                <div class="col-md-4 tileBox">
                     <h2> Collaborator </h2>
                     <p id="current_usr"></p>
                     <ul class="list-group" id='userlist'></ul>
@@ -150,6 +177,7 @@
                 </div>
             </div>
     </header>
+
 
 <section id = "recipe-section">
     <div class="container">
