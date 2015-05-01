@@ -186,10 +186,7 @@
             }
             $('#friend-btn').click(function(){
                 var users = [];
-                console.log("you playin!")
                     $.each($("input[name='pref']:checked"), function(){
-
-                      console.log( $(this).val());
                         $.post('/addUserToGroup', {'user_id': $(this).val(), 'group_id':group_id});
                     });
                 });
