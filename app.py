@@ -104,11 +104,17 @@ def create_group():
     db["groups"].insert( {'group_id' : str(group_id),'group_name' : group_name, 'user_ids': [user_id] })
     return str(group_id)
 
+@app.route("/addfriends", methods=['GET'])
+
+def add_friend():
+    return render_template('addFriends.html')
+
 @app.route("/addUserToGroup", methods=['POST'])
 
 def addUser():
     user_id = request.form.get('user_id')
     group_id = request.form.get('group_id')
+
 
     group_name = db["groups"].find_one({'group_id':group_id})['group_name']
 

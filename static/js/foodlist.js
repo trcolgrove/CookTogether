@@ -48,7 +48,11 @@ function statusChangeCallback(response) {
         });
       });
     }
+    else{
+      window.location - "/login"
+    }
 }
+
 $(document).ready(function(){
 
   var args = getUrlVars();
@@ -84,6 +88,9 @@ $(document).ready(function(){
     list_num++;
     clearInputs();
   });
+  $('#add-friends-btn').click(function(){
+    window.open("/addfriends?group_id=" + group_id);
+  });
 
   vars = getUrlVars();
   groupID= vars['group_id'];
@@ -106,6 +113,8 @@ $(document).ready(function(){
   });
 
   setInterval(pollDB, 10000);
+
+
 });
 
 

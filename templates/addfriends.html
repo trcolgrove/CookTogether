@@ -24,37 +24,7 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#next').click(function(){
-                var diet_restrict = [];
-                $.each($("input[name='pref']:checked"), function(){
-                    diet_restrict.push($(this).val());
-                });
 
-                FB.api('/me', function (response){
-                    current_user = response.id;
-                     $.getJSON('/userinfo.json?user_id='+current_user, function(data){
-                        user = data;
-                        user.diet_restrict = diet_restrict
-                        $.ajax({
-                          type: "POST",
-                          url: "/sendUserInfo",
-                          // The key needs to match your method's input parameter (case-sensitive).
-                          data: JSON.stringify(user),
-                          contentType: "application/json; charset=utf-8",
-                          dataType: "json",
-                          success: function(data){
-                            window.location= '/userprofile?user_id=' + current_user;
-                          },
-                          failure: function(errMsg) { alert(errMsg);}
-                        });
-                    });
-                });
-            });
-
-        });
-    </script>
     <style>
     #katesABusta{ text-align: left; padding-left: 15%;}
 
@@ -117,64 +87,13 @@
 
         <form role="form">
             <div class = "row">
-                    <div class="col-md-4" id="katesABusta">
-                        <label class ="checkbox"><input type="checkbox" value="low-carb" name="pref">Low-Carb
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="high-protein" name="pref">High-Protein
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="low-fat" name="pref">Low-Fat
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="balanced" name="pref">Balanced
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="high-fiber" name="pref">High-Fiber
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="low-sodium" name="pref">Low-Sodium
-                        </label>
+                    <div class="col-md-4 friend-column-1">
                     </div>
 
-                    <div class="col-md-4" id="katesABusta">
-                        <label class ="checkbox"><input type="checkbox" value="no-sugar" name="pref">No-Sugar
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="sugar-conscious" name="pref">Sugar-Conscious
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="vegetarian" name="pref"> Vegetarian
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="vegan" name="pref">Vegan
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="paleo" name="pref">Paleo
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="gluten-free" name="pref">Gluten-Free
-                        </label>
+                    <div class="col-md-4 friend-column-2">
                     </div>
 
-                    <div class="col-md-4" id="katesABusta">
-                        <label class ="checkbox"><input type="checkbox" value="wheat-free" name="pref">Wheat-Free
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="dairy-free" name="pref">Dairy-Free
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="egg-free" name="pref">Egg-Free
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="soy-free" name="pref">Soy-Free
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="tree-nut-free" name="pref">No-Tree-Nuts
-                        </label>
-                        <span class="fullWidthVis"><br/></span>
-                        <label class ="checkbox"><input type="checkbox" value="low-potassium" name="pref">Low-Potassium
-                        </label>
+                    <div class="col-md-4 friend-column-3">
                     </div>
         </div>
 
@@ -182,7 +101,7 @@
             <div class ="col-md-">
                 <br>
                 <br>
-                <a class="btn btn-primary btn-lg" id="next">Next </a>
+                <a class="btn btn-primary btn-lg" id="friend-btn">Next </a>
             </div>
 
         </div>
@@ -233,14 +152,50 @@
     <script src="/static/js/freelancer.js"></script>
 
      <script>
+    var ids= [];
+
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
     function statusChangeCallback(response) {
-      console.log('statusChangeCallback');
-      console.log(response);
-
       if (response.status === 'connected') {
+          FB.api('/me/friends', function (response){
 
-      }
-      else if (response.status === 'not_authorized') {
+            var group_id = getUrlVars()['group_id']
+
+            friend_list = response.data;
+
+            for(var i = 0; i < friend_list.length; i++){
+                var col = (i%3) + 1;
+                var col_id = ".friend-column-" + col;
+                console.log(col)
+                var friend_name = friend_list[i].name
+                var friend_id = friend_list[i].id
+                console.log(friend_list[i].name)
+                $(col_id).append('<label class ="checkbox"><input type="checkbox" value="' + friend_id + '" name="pref">' + friend_name + '</label>')
+                ids[friend_list[i].name] = friend_list[i].id
+            }
+            $('#friend-btn').click(function(){
+                var users = [];
+                console.log("you playin!")
+                    $.each($("input[name='pref']:checked"), function(){
+
+                      console.log( $(this).val());
+                        $.post('/addUserToGroup', {'user_id': $(this).val(), 'group_id':group_id});
+                    });
+                });
+            });
+      } else if (response.status === 'not_authorized') {
         window.location = '/login'
       } else {
         window.location = '/login'
