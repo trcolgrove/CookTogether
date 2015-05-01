@@ -38,7 +38,6 @@ function statusChangeCallback(response) {
           $('#current_usr').append(username);
           $.getJSON('/userinfo.json?user_id='+id, function(data){
             user = data;
-            console.log(user);
           });
         });
       });
@@ -60,10 +59,8 @@ $(document).ready(function(){
   $('.inputbox').change( function() {
       var date = Date();
       var id = this.id;
-      console.log(id);
       if(id == 'username_input'){
           username = $('#username_input').val();
-          console.log(username);
       }
       else if(id == 'ingr_input'){
           ingredient = $('#ingr_input').val();
@@ -90,9 +87,6 @@ $(document).ready(function(){
   vars = getUrlVars();
   groupID= vars['group_id'];
 
-  console.log("group id is: ")
-  console.log(groupID);
-
   $.getJSON('/groupinfo.json?group_id='+groupID, function(response) {
 
     $('.groupName').text(response.group_name);
@@ -101,7 +95,7 @@ $(document).ready(function(){
     for(var i = 0; i < collaborators.length; i++){
 
       var toInsert =  '<img id="usr_img" src="https://graph.facebook.com/' + collaborators[i] +'/picture?width=75&height=75" class="img-circle" alt="Generic placeholder thumbnail">';
-      console.log(toInsert)
+
       $('#group_pictures').append(toInsert);
     }
 

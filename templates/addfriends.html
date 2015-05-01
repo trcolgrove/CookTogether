@@ -177,10 +177,8 @@
             for(var i = 0; i < friend_list.length; i++){
                 var col = (i%3) + 1;
                 var col_id = ".friend-column-" + col;
-                console.log(col)
                 var friend_name = friend_list[i].name
                 var friend_id = friend_list[i].id
-                console.log(friend_list[i].name)
                 $(col_id).append('<label class ="checkbox"><input type="checkbox" value="' + friend_id + '" name="pref">' + friend_name + '</label>')
                 ids[friend_list[i].name] = friend_list[i].id
             }

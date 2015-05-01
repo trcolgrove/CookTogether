@@ -226,7 +226,6 @@
               $('#group_list').append('<li class="list-group-item" id="group_list_item">' + '<a href = "/plan?group_id='+user.groups[i].group_id+'">'+user.groups[i].group_name+'</a></li>');
             }
             FB.api ('/me?fields=picture.height(300).width(300)', function(response) {
-                console.log(response.picture);
                 $('#user_prof_picture').attr("src", response.picture.data.url);
             });
           })
