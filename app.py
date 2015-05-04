@@ -66,6 +66,12 @@ def return_planner():
     return render_template('meal_planner.html')
 
 
+@app.route("/about", methods=['GET'])
+
+def about():
+    return render_template('about.html')
+
+
 @app.route("/userinfo.json", methods=['GET'])
 
 def user_info():
@@ -113,7 +119,6 @@ def add_friend():
 def addUser():
     user_id = request.form.get('user_id')
     group_id = request.form.get('group_id')
-
 
     group_name = db["groups"].find_one({'group_id':group_id})['group_name']
 

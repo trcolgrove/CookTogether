@@ -50,7 +50,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#about">About</a>
+                        <a href="/about">About</a>
                     </li>
                     <li class="page-scroll">
                         <a href="mailto:aditi.ashok@tufts.edu">Contact</a>
@@ -156,7 +156,7 @@
 
             $.getJSON('/userinfo.json?user_id='+user.user_id, function(data){
               if ($.isEmptyObject(data)) {
-      
+
                 $.ajax({
                   type: "POST",
                   url: "/sendUserInfo",

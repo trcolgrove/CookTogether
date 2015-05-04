@@ -55,7 +55,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="http://cooktogether.herokuapp.com/about">About</a>
+                        <a href="/about">About</a>
                     </li>
                     <li class="page-scroll">
                         <a href="mailto:aditi.ashok@tufts.edu">Contact</a>
@@ -210,28 +210,30 @@
         if (response.status === 'connected') {
           FB.api('/me', function (response){
           current_user = response.id;
+          FB.api('/me/friends', function(user_friends){
 
-          $.getJSON('/userinfo.json?user_id='+current_user, function(data){
-            user = data;
-            $('#user_prof_header').text(response.name)
-            for(var i = 0 ; i < user.diet_restrict.length; i++){
-                if (i == user.diet_restrict.length - 1) {
-                    $('#profile_pref_list').append(user.diet_restrict[i]);
-                }
-                else {
-                    $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
-                }
-            }
-            for(var i = 0 ; i < user.friends.data.length; i++){
-              $('#profile_friend_list').append('<li class="list-group-item" id="group_list_item">' + user.friends.data[i].name + '</li>');
-            }
-            for(var i = 0 ; i < user.groups.length; i++){
-              $('#group_list').append('<li class="list-group-item" id="group_list_item">' + '<a href = "/plan?group_id='+user.groups[i].group_id+'">'+user.groups[i].group_name+'</a></li>');
-            }
-            FB.api ('/me?fields=picture.height(300).width(300)', function(response) {
-                $('#user_prof_picture').attr("src", response.picture.data.url);
+            $.getJSON('/userinfo.json?user_id='+current_user, function(data){
+              user = data;
+              $('#user_prof_header').text(response.name)
+              for(var i = 0 ; i < user.diet_restrict.length; i++){
+                  if (i == user.diet_restrict.length - 1) {
+                      $('#profile_pref_list').append(user.diet_restrict[i]);
+                  }
+                  else {
+                      $('#profile_pref_list').append(user.diet_restrict[i] + ", ");
+                  }
+              }
+              for(var i = 0 ; i < user_friends.data.length; i++){
+                $('#profile_friend_list').append('<li class="list-group-item" id="group_list_item">' + user_friends.data[i].name + '</li>');
+              }
+              for(var i = 0 ; i < user.groups.length; i++){
+                $('#group_list').append('<li class="list-group-item" id="group_list_item">' + '<a href = "/plan?group_id='+user.groups[i].group_id+'">'+user.groups[i].group_name+'</a></li>');
+              }
+              FB.api ('/me?fields=picture.height(300).width(300)', function(response) {
+                  $('#user_prof_picture').attr("src", response.picture.data.url);
+              });
             });
-          })
+          });
         });
     } else if (response.status === 'not_authorized') {
           window.location = "/login"
